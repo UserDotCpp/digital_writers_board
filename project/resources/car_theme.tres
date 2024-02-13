@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ccbdho78feq2h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8xkg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgyjd"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[resource]
+HBoxContainer/styles/color = SubResource("StyleBoxFlat_t8xkg")
+VBoxContainer/styles/color = SubResource("StyleBoxFlat_rgyjd")

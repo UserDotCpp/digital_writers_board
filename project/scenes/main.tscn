@@ -1,0 +1,425 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5leug1lnt7wn"]
+
+[ext_resource type="Script" path="res://script/main.gd" id="1_a60uh"]
+[ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_gryw4"]
+[ext_resource type="Script" path="res://script/board.gd" id="2_vfl3q"]
+[ext_resource type="PackedScene" uid="uid://bjl14d3wyd110" path="res://scenes/snap_area.tscn" id="3_i005t"]
+[ext_resource type="AudioStream" uid="uid://dwl2i4k8xwcbt" path="res://assets/audio/castle.mp3" id="6_1n8b0"]
+[ext_resource type="AudioStream" uid="uid://dt1eag7bkcliy" path="res://assets/audio/illegal.mp3" id="7_fu5sl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0wom"]
+size = Vector2(8124, 4505)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_a60uh")
+
+[node name="back" type="TextureRect" parent="."]
+modulate = Color(0.870588, 0.870588, 0.870588, 0.937255)
+z_index = -5
+offset_left = -5412.0
+offset_top = -5222.0
+offset_right = 7592.0
+offset_bottom = 2860.0
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_gryw4")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = 914.0
+offset_top = -522.0
+offset_right = 5838.0
+offset_bottom = 1397.0
+color = Color(0, 0, 0, 0.223529)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(3369, 136)
+limit_left = -1350
+limit_top = -1500
+limit_right = 8000
+limit_bottom = 2500
+editor_draw_limits = true
+
+[node name="out_of_bounds" type="StaticBody2D" parent="."]
+position = Vector2(3857, 453)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="out_of_bounds"]
+visible = false
+position = Vector2(-178, -123.5)
+shape = SubResource("RectangleShape2D_b0wom")
+
+[node name="board" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 852.5
+offset_top = -786.5
+offset_right = 6548.5
+offset_bottom = 1386.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vfl3q")
+
+[node name="Label" type="Label" parent="board"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 200
+text = "Board Name"
+
+[node name="Panel" type="Panel" parent="board"]
+custom_minimum_size = Vector2(4900, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act1-hide" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 70
+text = "act 1"
+icon_alignment = 1
+
+[node name="plus" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act1" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="drop_zone1-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone2-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone3-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone4-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone5-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone6-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone7-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone8-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone9-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="drop_zone10-1" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act2-1-hide" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 70
+text = "act 2
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act2-1" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel1-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act2-2-hide" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 70
+text = "act 2
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act2-2" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel1-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act3-hide" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 70
+text = "act 3
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act3" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel1-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10-3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="save" type="Button" parent="."]
+offset_left = 3339.0
+offset_top = -764.0
+offset_right = 3826.0
+offset_bottom = -534.0
+theme_override_font_sizes/font_size = 100
+text = "SAVE"
+
+[node name="save_path" type="TextEdit" parent="save"]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 18.0
+offset_right = 2021.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 100
+text = "MyScene.tscn"
+
+[node name="print_script" type="Button" parent="."]
+offset_left = 2574.0
+offset_top = -759.0
+offset_right = 3201.0
+offset_bottom = -548.0
+theme_override_font_sizes/font_size = 100
+text = "print script"
+
+[node name="spawner" type="Node2D" parent="."]
+position = Vector2(-231, -209)
+
+[node name="spawn_vfx" type="AudioStreamPlayer" parent="spawner"]
+stream = ExtResource("6_1n8b0")
+bus = &"vfx"
+
+[node name="error_vfx" type="AudioStreamPlayer" parent="spawner"]
+stream = ExtResource("7_fu5sl")
+bus = &"vfx"
+
+[node name="back" type="ColorRect" parent="spawner"]
+visible = false
+z_index = -1
+offset_right = 953.0
+offset_bottom = 598.0
+color = Color(0, 0, 0, 0.368627)
+
+[node name="TextureRect" type="TextureRect" parent="spawner"]
+visible = false
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+offset_left = 40.0
+offset_top = 45.0
+offset_right = 921.0
+offset_bottom = 553.0
+texture = ExtResource("2_gryw4")
+expand_mode = 1
+
+[node name="spawner_button" type="Button" parent="spawner"]
+offset_left = 233.0
+offset_top = 40.0
+offset_right = 786.0
+offset_bottom = 185.0
+theme_override_font_sizes/font_size = 100
+text = "create card"
+
+[node name="spawn_location" type="Marker2D" parent="spawner"]
+position = Vector2(196, 391)
+
+[connection signal="pressed" from="board/HBoxContainer/act1-hide" to="board" method="_on_act_1_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer2/act2-1-hide" to="board" method="_on_act_21_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer3/act2-2-hide" to="board" method="_on_act_22_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer4/act3-hide" to="board" method="_on_act_3_hide_pressed"]
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="print_script" to="." method="_on_print_script_pressed"]
+[connection signal="pressed" from="spawner/spawner_button" to="." method="_on_spawner_button_pressed"]
+
+[editable path="board/act1/drop_zone1-1"]
+[editable path="board/act1/drop_zone2-1"]
+[editable path="board/act1/drop_zone3-1"]
+[editable path="board/act1/drop_zone4-1"]
+[editable path="board/act1/drop_zone5-1"]
+[editable path="board/act1/drop_zone6-1"]
+[editable path="board/act1/drop_zone7-1"]
+[editable path="board/act1/drop_zone8-1"]
+[editable path="board/act1/drop_zone9-1"]
+[editable path="board/act1/drop_zone10-1"]
+[editable path="board/act2-1/Panel1-21"]
+[editable path="board/act2-1/Panel2-21"]
+[editable path="board/act2-1/Panel3-21"]
+[editable path="board/act2-1/Panel4-21"]
+[editable path="board/act2-1/Panel5-21"]
+[editable path="board/act2-1/Panel6-21"]
+[editable path="board/act2-1/Panel7-21"]
+[editable path="board/act2-1/Panel8-21"]
+[editable path="board/act2-1/Panel9-21"]
+[editable path="board/act2-1/Panel10-21"]
+[editable path="board/act2-2/Panel1-22"]
+[editable path="board/act2-2/Panel2-22"]
+[editable path="board/act2-2/Panel3-22"]
+[editable path="board/act2-2/Panel4-22"]
+[editable path="board/act2-2/Panel5-22"]
+[editable path="board/act2-2/Panel6-22"]
+[editable path="board/act2-2/Panel7-22"]
+[editable path="board/act2-2/Panel8-22"]
+[editable path="board/act2-2/Panel9-22"]
+[editable path="board/act2-2/Panel10-22"]
+[editable path="board/act3/Panel1-3"]
+[editable path="board/act3/Panel2-3"]
+[editable path="board/act3/Panel3-3"]
+[editable path="board/act3/Panel4-3"]
+[editable path="board/act3/Panel5-3"]
+[editable path="board/act3/Panel6-3"]
+[editable path="board/act3/Panel7-3"]
+[editable path="board/act3/Panel8-3"]
+[editable path="board/act3/Panel9-3"]
+[editable path="board/act3/Panel10-3"]

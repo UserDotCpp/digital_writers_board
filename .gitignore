@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+build
+project/.godot/
+project/.godot
+project/.import/
+project/.import
+.git/

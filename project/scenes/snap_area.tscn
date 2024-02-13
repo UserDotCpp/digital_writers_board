@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjl14d3wyd110"]
+
+[ext_resource type="Script" path="res://script/snap_area.gd" id="1_fi8xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhvri"]
+size = Vector2(478, 307)
+
+[node name="drop_zone" type="Container" groups=["droppable_place"]]
+custom_minimum_size = Vector2(566, 366)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -190.0
+offset_right = 316.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_fi8xl")
+
+[node name="snap_area" type="StaticBody2D" parent="."]
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(488, 317)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="snap_area"]
+show_behind_parent = true
+position = Vector2(-243, -157)
+shape = SubResource("RectangleShape2D_lhvri")
+
+[node name="Panel" type="ColorRect" parent="."]
+editor_description = "490"
+custom_minimum_size = Vector2(566, 366)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="drop_point" type="Node2D" parent="."]
+
+[connection signal="child_exiting_tree" from="drop_point" to="." method="_on_drop_point_child_exiting_tree"]

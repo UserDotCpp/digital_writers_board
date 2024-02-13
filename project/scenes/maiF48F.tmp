@@ -1,0 +1,276 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5leug1lnt7wn"]
+
+[ext_resource type="Script" path="res://script/main.gd" id="1_a60uh"]
+[ext_resource type="PackedScene" uid="uid://ygsls4hx3r01" path="res://scenes/scene_card.tscn" id="1_mfwsn"]
+[ext_resource type="Script" path="res://script/board.gd" id="2_vfl3q"]
+[ext_resource type="PackedScene" uid="uid://bjl14d3wyd110" path="res://scenes/snap_area.tscn" id="3_i005t"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_a60uh")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(635, 356)
+
+[node name="board" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 1933.0
+offset_bottom = 1041.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vfl3q")
+
+[node name="Panel" type="Panel" parent="board"]
+custom_minimum_size = Vector2(4900, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act1-hide" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "act 1"
+icon_alignment = 1
+
+[node name="plus" type="Button" parent="board/HBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act1" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10" parent="board/act1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="scene" parent="board/act1" instance=ExtResource("1_mfwsn")]
+position = Vector2(-510.5, -141)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act2-1-hide" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "act 2
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act2-1" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10" parent="board/act2-1" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act2-2-hide" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "act 2
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act2-2" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10" parent="board/act2-2" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="board"]
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = " -"
+
+[node name="act3-hide" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "act 3
+"
+
+[node name="plus" type="Button" parent="board/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+text = " -"
+
+[node name="act3" type="HBoxContainer" parent="board"]
+custom_minimum_size = Vector2(500, 350)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Panel" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel2" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel3" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel4" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel5" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel6" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel7" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel8" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel9" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="Panel10" parent="board/act3" instance=ExtResource("3_i005t")]
+layout_mode = 2
+
+[node name="scene2" parent="board" instance=ExtResource("1_mfwsn")]
+position = Vector2(-502.5, 283)
+
+[connection signal="pressed" from="board/HBoxContainer/act1-hide" to="board" method="_on_act_1_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer2/act2-1-hide" to="board" method="_on_act_21_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer3/act2-2-hide" to="board" method="_on_act_22_hide_pressed"]
+[connection signal="pressed" from="board/HBoxContainer4/act3-hide" to="board" method="_on_act_3_hide_pressed"]

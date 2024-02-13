@@ -1,0 +1,180 @@
+[gd_scene load_steps=7 format=3 uid="uid://ygsls4hx3r01"]
+
+[ext_resource type="Script" path="res://script/scene_card.gd" id="1_6fmlh"]
+[ext_resource type="AudioStream" uid="uid://fp7lpgk3ffj2" path="res://assets/audio/move-self.mp3" id="2_82h74"]
+[ext_resource type="Script" path="res://script/card_content.gd" id="2_gm5t0"]
+[ext_resource type="AudioStream" uid="uid://bs0la4sqs52t2" path="res://assets/audio/capture.mp3" id="3_qfyu5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox8cp"]
+size = Vector2(488.5, 293)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alml7"]
+size = Vector2(57, 67)
+
+[node name="scene_card" type="Node2D" groups=["card"]]
+top_level = true
+script = ExtResource("1_6fmlh")
+
+[node name="shadow" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 33.0
+offset_top = 40.0
+offset_right = 514.0
+offset_bottom = 340.0
+color = Color(0, 0, 0, 0.278431)
+
+[node name="card_background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = 31.0
+offset_right = 533.0
+offset_bottom = 328.0
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[node name="StaticBody2" type="StaticBody2D" parent="." groups=["dropable"]]
+position = Vector2(278, 184)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+
+[node name="CollisionShape" type="CollisionShape2D" parent="StaticBody2"]
+z_index = 4
+position = Vector2(9, -4)
+shape = SubResource("RectangleShape2D_ox8cp")
+
+[node name="area" type="Area2D" parent="."]
+position = Vector2(276, 184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+position = Vector2(-221.5, -141.5)
+shape = SubResource("RectangleShape2D_alml7")
+
+[node name="move_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_82h74")
+bus = &"vfx"
+
+[node name="place_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qfyu5")
+bus = &"vfx"
+
+[node name="card_content" type="VBoxContainer" parent="."]
+z_index = 5
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = 35.0
+offset_right = 530.0
+offset_bottom = 326.0
+grow_vertical = 2
+script = ExtResource("2_gm5t0")
+
+[node name="top" type="HBoxContainer" parent="card_content"]
+layout_mode = 2
+
+[node name="color" type="ColorPickerButton" parent="card_content/top"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="story_beat" type="LineEdit" parent="card_content/top"]
+layout_mode = 2
+size_flags_horizontal = 6
+placeholder_text = "STORY BEAT NAME"
+alignment = 1
+expand_to_text_length = true
+flat = true
+
+[node name="Container" type="Container" parent="card_content"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="location_info" type="HBoxContainer" parent="card_content"]
+layout_mode = 2
+
+[node name="intOut" type="Button" parent="card_content/location_info"]
+layout_mode = 2
+text = "INT"
+
+[node name="space-1" type="Label" parent="card_content/location_info"]
+layout_mode = 2
+text = ". "
+
+[node name="place" type="LineEdit" parent="card_content/location_info"]
+layout_mode = 2
+text = "COFFEE SHOP"
+expand_to_text_length = true
+
+[node name="space-2" type="Label" parent="card_content/location_info"]
+layout_mode = 2
+text = " - "
+
+[node name="time" type="LineEdit" parent="card_content/location_info"]
+layout_mode = 2
+text = "DAY"
+expand_to_text_length = true
+
+[node name="scene_content" type="TextEdit" parent="card_content"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Bob confronts Helen about her "
+wrap_mode = 1
+
+[node name="emotional_changes" type="HBoxContainer" parent="card_content"]
+layout_mode = 2
+
+[node name="emotional_tone" type="Button" parent="card_content/emotional_changes"]
+layout_mode = 2
+text = "+/-"
+
+[node name="emotional_tone_content" type="LineEdit" parent="card_content/emotional_changes"]
+layout_mode = 2
+text = "Bob starts out hopeful, ends up disappointed"
+expand_to_text_length = true
+
+[node name="dot" type="Label" parent="card_content/emotional_changes"]
+layout_mode = 2
+text = "."
+
+[node name="conflict" type="HBoxContainer" parent="card_content"]
+layout_mode = 2
+
+[node name="conflict_direction" type="Button" parent="card_content/conflict"]
+layout_mode = 2
+text = "> <"
+
+[node name="party_one" type="LineEdit" parent="card_content/conflict"]
+layout_mode = 2
+text = "Bob wants to know secret"
+expand_to_text_length = true
+
+[node name="&" type="Label" parent="card_content/conflict"]
+layout_mode = 2
+text = " ; "
+
+[node name="party_two" type="LineEdit" parent="card_content/conflict"]
+layout_mode = 2
+text = "Helen cant´t tell him"
+expand_to_text_length = true
+
+[node name="dot" type="Label" parent="card_content/conflict"]
+layout_mode = 2
+text = "."
+
+[connection signal="input_event" from="StaticBody2" to="." method="_on_static_body_input_event"]
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
+[connection signal="color_changed" from="card_content/top/color" to="." method="_on_color_color_changed"]
+[connection signal="text_changed" from="card_content/top/story_beat" to="card_content" method="_on_story_beat_text_changed"]
+[connection signal="pressed" from="card_content/location_info/intOut" to="card_content" method="_on_int_out_pressed"]
+[connection signal="text_changed" from="card_content/location_info/place" to="card_content" method="_on_place_text_changed"]
+[connection signal="text_changed" from="card_content/location_info/time" to="card_content" method="_on_time_text_changed"]
+[connection signal="text_changed" from="card_content/scene_content" to="card_content" method="_on_scene_content_text_changed"]
+[connection signal="pressed" from="card_content/emotional_changes/emotional_tone" to="card_content" method="_on_emotional_tone_pressed"]
+[connection signal="text_changed" from="card_content/emotional_changes/emotional_tone_content" to="card_content" method="_on_emotional_tone_content_text_changed"]
+[connection signal="text_changed" from="card_content/conflict/party_one" to="card_content" method="_on_party_one_text_changed"]
+[connection signal="text_changed" from="card_content/conflict/party_two" to="card_content" method="_on_party_two_text_changed"]
