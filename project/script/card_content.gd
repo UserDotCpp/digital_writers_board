@@ -44,14 +44,9 @@ func card_content(reff_designated_dedropzone) -> void:
 	var emotional_changes
 	emotional_changes = $emotional_changes/emotional_tone.text +"	" + $emotional_changes/emotional_tone_content.text
 	
-	var conflict = "><	" + $conflict/party_one.text + "	,	" + $conflict/party_two.text
+	var conflict = "conflict:	" + $conflict/party_one.text + "	,	" + $conflict/party_two.text
 	
-	Global.final_script_content = Global.final_script_content + ("on the "+ str(reff_designated_dedropzone) + "
-	") +(location_info + "
-	") +("		" + emotional_changes + "		" + conflict + "
-	") +("	" + scene_content + "
-	") +("
-	") +("")
+	Global.final_script_content = Global.final_script_content + ("on the "+ str(reff_designated_dedropzone) +"	story beat: "+ get_parent().story_beat + "\n") +(location_info + "\n") +(emotional_changes +"\n"+ conflict + "\n") +("\n" +"	" + scene_content + "\n") +("\n" +"------"+"\n")
 
 func _on_story_beat_text_changed(new_text):
 	get_parent().story_beat = new_text
@@ -109,3 +104,7 @@ func _on_color_color_changed(color):
 	print(get_parent().get_node("card_background").modulate)
 	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
 	get_parent().color  = color
+
+
+func _on_zoom_area_mouse_entered():
+	print("Se")

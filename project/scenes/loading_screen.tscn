@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6udtkl0yvaqf"]
+
+[ext_resource type="Script" path="res://script/loading_screen.gd" id="1_rfqos"]
+[ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_jffo6"]
+
+[sub_resource type="Gradient" id="Gradient_6wkkk"]
+offsets = PackedFloat32Array(0, 0.970803, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eioyi"]
+gradient = SubResource("Gradient_6wkkk")
+fill_to = Vector2(1, 0.0497512)
+
+[sub_resource type="Animation" id="Animation_byfed"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["LOADING"]
+}
+
+[sub_resource type="Animation" id="Animation_dc7dy"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["LOADING", "LOADING.", "LOADING..", "LOADING..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f08x8"]
+_data = {
+"RESET": SubResource("Animation_byfed"),
+"idle": SubResource("Animation_dc7dy")
+}
+
+[node name="loading_screen" type="CanvasLayer"]
+script = ExtResource("1_rfqos")
+next_scene_path = "res://scenes/main_menu.tscn"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="back" type="TextureRect" parent="Control"]
+modulate = Color(0.870588, 0.870588, 0.870588, 0.937255)
+z_index = -5
+layout_mode = 0
+offset_left = -5412.0
+offset_top = -5222.0
+offset_right = 7592.0
+offset_bottom = 2860.0
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_jffo6")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0.521569)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_eioyi")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_right = 499.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "LOADING"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_f08x8")
+}
+autoplay = "idle"

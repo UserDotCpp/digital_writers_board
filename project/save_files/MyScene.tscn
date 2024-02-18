@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
-[ext_resource type="Script" path="res://script/main.gd" id="1_gxkyl"]
-[ext_resource type="Texture2D" path="res://assets/art/board_background.jpg" id="2_f7psr"]
-[ext_resource type="Script" path="res://script/board.gd" id="3_yvf7t"]
-[ext_resource type="PackedScene" path="res://scenes/snap_area.tscn" id="4_pbto7"]
-[ext_resource type="Script" path="res://script/snap_area.gd" id="5_yu3si"]
-[ext_resource type="PackedScene" path="res://scenes/scene_card.tscn" id="6_l883d"]
-[ext_resource type="Script" path="res://script/scene_card.gd" id="7_ol6sh"]
-[ext_resource type="AudioStream" path="res://assets/audio/castle.mp3" id="8_sa8gx"]
-[ext_resource type="AudioStream" path="res://assets/audio/illegal.mp3" id="9_b8aie"]
-[ext_resource type="AudioStream" path="res://assets/audio/staple.mp3" id="10_tf2tk"]
+[ext_resource type="Script" path="res://script/main.gd" id="1_rjtmn"]
+[ext_resource type="Texture2D" path="res://assets/art/board_background.jpg" id="2_blg0v"]
+[ext_resource type="AudioStream" path="res://assets/audio/staple.mp3" id="3_ydbip"]
+[ext_resource type="AudioStream" path="res://assets/audio/move-self.mp3" id="4_xmy60"]
+[ext_resource type="Script" path="res://script/board.gd" id="5_md4ny"]
+[ext_resource type="PackedScene" path="res://scenes/snap_area.tscn" id="6_wcrj1"]
+[ext_resource type="Script" path="res://script/snap_area.gd" id="7_mddwv"]
+[ext_resource type="PackedScene" path="res://scenes/scene_card.tscn" id="8_7pqk1"]
+[ext_resource type="Script" path="res://script/scene_card.gd" id="9_s8o56"]
+[ext_resource type="AudioStream" path="res://assets/audio/castle.mp3" id="10_7rbbx"]
+[ext_resource type="AudioStream" path="res://assets/audio/illegal.mp3" id="11_whojh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvny3"]
 size = Vector2(1915, 89)
@@ -21,7 +22,7 @@ size = Vector2(8124, 4505)
 size = Vector2(478, 307)
 
 [node name="main" type="Node2D"]
-script = ExtResource("1_gxkyl")
+script = ExtResource("1_rjtmn")
 script_name = "script_name"
 
 [node name="back" type="TextureRect" parent="."]
@@ -32,7 +33,7 @@ offset_top = -5222.0
 offset_right = 7592.0
 offset_bottom = 2860.0
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("2_f7psr")
+texture = ExtResource("2_blg0v")
 stretch_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -43,6 +44,17 @@ offset_right = 5838.0
 offset_bottom = 1397.0
 color = Color(0, 0, 0, 0.223529)
 
+[node name="staple_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ydbip")
+volume_db = -15.297
+pitch_scale = 0.980191
+bus = &"vfx"
+
+[node name="move_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xmy60")
+pitch_scale = 0.88
+bus = &"vfx"
+
 [node name="Camera" type="Camera2D" parent="."]
 editor_description = "Limits
 
@@ -50,8 +62,8 @@ L -1350
 T -1500
 R 8000
 B 2500"
-position = Vector2(1823.01, 91.4354)
-zoom = Vector2(0.3, 0.3)
+position = Vector2(1805.61, -277.709)
+zoom = Vector2(0.75, 0.75)
 editor_draw_limits = true
 
 [node name="ui" type="CanvasLayer" parent="Camera"]
@@ -187,7 +199,7 @@ offset_right = 6548.5
 offset_bottom = 1386.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_yvf7t")
+script = ExtResource("5_md4ny")
 
 [node name="Label" type="Label" parent="board"]
 layout_mode = 2
@@ -228,11 +240,11 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="drop_zone1-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone1-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone1-1" index="0"]
@@ -253,11 +265,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone2-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone2-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = true
 
 [node name="snap_area" parent="board/act1/drop_zone2-1" index="0"]
@@ -278,27 +290,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="card1" type="Node2D" parent="board/act1/drop_zone2-1/drop_point" index="0" groups=["card"] instance=ExtResource("6_l883d")]
+[node name="card1" type="Node2D" parent="board/act1/drop_zone2-1/drop_point" index="0" groups=["card"] instance=ExtResource("8_7pqk1")]
 top_level = true
 position = Vector2(1422.5, -405.5)
-script = ExtResource("7_ol6sh")
+script = ExtResource("9_s8o56")
 designated_dedropzone_set = true
-story_beat = "Bad Guys Close In"
-color = Color(1, 0, 0, 1)
-intout = "INT"
-place = "ESTE"
-time = "ASDFASDASD"
-scene_content = "TEST"
+story_beat = ""
+color = Color(0.4235, 0.4235, 0.4235, 1)
+intout = "OUT"
+place = ""
+time = ""
+scene_content = ""
 emotional_tone = "+/-"
-emotional_tone_content = "ASD"
-party_one = "ASFSAGF"
-party_two = "SAFASF"
+emotional_tone_content = ""
+party_one = ""
+party_two = ""
 
-[node name="drop_zone3-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone3-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone3-1" index="0"]
@@ -319,11 +331,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone4-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone4-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone4-1" index="0"]
@@ -344,11 +356,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone5-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone5-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone5-1" index="0"]
@@ -369,11 +381,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone6-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone6-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone6-1" index="0"]
@@ -394,11 +406,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone7-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone7-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone7-1" index="0"]
@@ -419,11 +431,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone8-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone8-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone8-1" index="0"]
@@ -444,11 +456,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone9-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone9-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone9-1" index="0"]
@@ -469,11 +481,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="drop_zone10-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="drop_zone10-1" parent="board/act1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act1/drop_zone10-1" index="0"]
@@ -524,11 +536,11 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel1-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel1-21" index="0"]
@@ -549,11 +561,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel2-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel2-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel2-21" index="0"]
@@ -574,11 +586,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel3-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel3-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel3-21" index="0"]
@@ -599,12 +611,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel4-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel4-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
-occupied = true
+script = ExtResource("7_mddwv")
+occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel4-21" index="0"]
 show_behind_parent = true
@@ -618,33 +630,17 @@ shape = SubResource("RectangleShape2D_lhvri")
 
 [node name="Panel" parent="board/act2-1/Panel4-21" index="1"]
 editor_description = "490"
-modulate = Color(0, 0, 0, 0.5)
+modulate = Color(0.4922, 0.4922, 0.4922, 0.1824)
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="card2" type="Node2D" parent="board/act2-1/Panel4-21/drop_point" index="0" groups=["card"] instance=ExtResource("6_l883d")]
-top_level = true
-position = Vector2(2562.5, 72.5)
-script = ExtResource("7_ol6sh")
-designated_dedropzone_set = true
-story_beat = ""
-color = Color(0.243137, 1, 0, 1)
-intout = "OUT"
-place = ""
-time = ""
-scene_content = "sFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
-emotional_tone = "+/-"
-emotional_tone_content = ""
-party_one = ""
-party_two = ""
-
-[node name="Panel5-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel5-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel5-21" index="0"]
@@ -665,11 +661,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel6-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel6-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel6-21" index="0"]
@@ -690,11 +686,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel7-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel7-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel7-21" index="0"]
@@ -715,11 +711,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel8-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel8-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel8-21" index="0"]
@@ -740,11 +736,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel9-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel9-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel9-21" index="0"]
@@ -765,11 +761,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel10-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel10-21" parent="board/act2-1" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-1/Panel10-21" index="0"]
@@ -821,11 +817,11 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel1-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel1-22" index="0"]
@@ -846,11 +842,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel2-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel2-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel2-22" index="0"]
@@ -871,11 +867,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel3-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel3-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel3-22" index="0"]
@@ -896,11 +892,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel4-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel4-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel4-22" index="0"]
@@ -921,11 +917,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel5-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel5-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel5-22" index="0"]
@@ -946,11 +942,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel6-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel6-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel6-22" index="0"]
@@ -971,11 +967,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel7-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel7-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel7-22" index="0"]
@@ -996,11 +992,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel8-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel8-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel8-22" index="0"]
@@ -1021,11 +1017,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel9-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel9-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel9-22" index="0"]
@@ -1046,11 +1042,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel10-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel10-22" parent="board/act2-2" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act2-2/Panel10-22" index="0"]
@@ -1102,11 +1098,11 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel1-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel1-3" index="0"]
@@ -1127,11 +1123,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel2-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel2-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel2-3" index="0"]
@@ -1152,11 +1148,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel3-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel3-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel3-3" index="0"]
@@ -1177,11 +1173,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel4-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel4-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel4-3" index="0"]
@@ -1202,11 +1198,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel5-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel5-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel5-3" index="0"]
@@ -1227,11 +1223,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel6-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel6-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel6-3" index="0"]
@@ -1252,11 +1248,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel7-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel7-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel7-3" index="0"]
@@ -1277,11 +1273,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel8-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel8-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel8-3" index="0"]
@@ -1302,11 +1298,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel9-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel9-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel9-3" index="0"]
@@ -1327,11 +1323,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel10-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("4_pbto7")]
+[node name="Panel10-3" parent="board/act3" groups=["droppable_place"] instance=ExtResource("6_wcrj1")]
 custom_minimum_size = Vector2(566, 366)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("5_yu3si")
+script = ExtResource("7_mddwv")
 occupied = false
 
 [node name="snap_area" parent="board/act3/Panel10-3" index="0"]
@@ -1383,11 +1379,11 @@ text = "print script"
 position = Vector2(-231, -209)
 
 [node name="spawn_vfx" type="AudioStreamPlayer" parent="spawner"]
-stream = ExtResource("8_sa8gx")
+stream = ExtResource("10_7rbbx")
 bus = &"vfx"
 
 [node name="error_vfx" type="AudioStreamPlayer" parent="spawner"]
-stream = ExtResource("9_b8aie")
+stream = ExtResource("11_whojh")
 bus = &"vfx"
 
 [node name="back" type="ColorRect" parent="spawner"]
@@ -1404,17 +1400,11 @@ offset_left = 40.0
 offset_top = 45.0
 offset_right = 921.0
 offset_bottom = 553.0
-texture = ExtResource("2_f7psr")
+texture = ExtResource("2_blg0v")
 expand_mode = 1
 
 [node name="spawn_location" type="Marker2D" parent="spawner"]
 position = Vector2(196, 391)
-
-[node name="staple_vfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_tf2tk")
-volume_db = -15.297
-pitch_scale = 0.97746
-bus = &"vfx"
 
 [connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]

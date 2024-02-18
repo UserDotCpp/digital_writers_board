@@ -3,7 +3,8 @@ extends Node2D
 
 func _on_new_board_pressed():
 	$move_vfx.play()
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	Global.change_scene_to("res://scenes/main.tscn")
+	#get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_load_board_pressed():
@@ -19,8 +20,9 @@ func _on_load_pressed():
 	if !FileAccess.file_exists(file):
 		$error_vfx.play()
 		return
-	get_tree().change_scene_to_file(file)
-
+	Global.change_scene_to(file)
+	#get_tree().change_scene_to_file(file)
+	
 
 func _on_exit_pressed():
 	$move_vfx.play()
