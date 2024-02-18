@@ -103,11 +103,12 @@ func _on_save_pressed():
 
 	scene.pack(node_to_save)
 
-	var save_path = "res://save_files/" + $save/save_path.text
+	var save_path = "res://save_files/" + $Camera/ui/top/LeftRight/save/save_path.text
 	ResourceSaver.save(scene, save_path)
 
 
 func _on_area_top_mouse_entered():
+	$move_vfx.play()
 	change_top_ui_status(false)
 
 
@@ -121,6 +122,7 @@ func change_top_ui_status(status) -> void:
 	$Camera/ui/top/LeftRight/save.disabled = status
 
 func _on_area_below_mouse_entered():
+	$move_vfx.play()
 	change_below_ui_status(false)
 
 func _on_area_below_mouse_exited():

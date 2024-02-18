@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5leug1lnt7wn"]
+[gd_scene load_steps=11 format=3 uid="uid://b5leug1lnt7wn"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_a60uh"]
 [ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_gryw4"]
 [ext_resource type="Script" path="res://script/board.gd" id="2_vfl3q"]
 [ext_resource type="PackedScene" uid="uid://bjl14d3wyd110" path="res://scenes/snap_area.tscn" id="3_i005t"]
+[ext_resource type="AudioStream" uid="uid://fp7lpgk3ffj2" path="res://assets/audio/move-self.mp3" id="4_7vmob"]
 [ext_resource type="AudioStream" uid="uid://dwl2i4k8xwcbt" path="res://assets/audio/castle.mp3" id="6_1n8b0"]
 [ext_resource type="AudioStream" uid="uid://dt1eag7bkcliy" path="res://assets/audio/illegal.mp3" id="7_fu5sl"]
 [ext_resource type="AudioStream" uid="uid://b3uoc6se4p33l" path="res://assets/audio/staple.mp3" id="7_hnodb"]
@@ -35,6 +36,16 @@ offset_top = -522.0
 offset_right = 5838.0
 offset_bottom = 1397.0
 color = Color(0, 0, 0, 0.223529)
+
+[node name="staple_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hnodb")
+volume_db = -15.297
+bus = &"vfx"
+
+[node name="move_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7vmob")
+pitch_scale = 0.88
+bus = &"vfx"
 
 [node name="Camera" type="Camera2D" parent="."]
 editor_description = "Limits
@@ -492,11 +503,6 @@ expand_mode = 1
 
 [node name="spawn_location" type="Marker2D" parent="spawner"]
 position = Vector2(196, 391)
-
-[node name="staple_vfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_hnodb")
-volume_db = -15.297
-bus = &"vfx"
 
 [connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]

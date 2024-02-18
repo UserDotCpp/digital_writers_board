@@ -5,3 +5,6 @@ project/.godot
 project/.import/
 project/.import
 .git/
+project/blender_imports/
+project/export/
+project/.export/
