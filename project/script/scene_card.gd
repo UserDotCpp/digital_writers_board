@@ -2,9 +2,10 @@ extends Node2D
 
 var selected = false
 var designated_dedropzone = null
-#@export var designated_dedropzone_set = false #might be redundant, it is
+@export var designated_dedropzone_set = false #might be redundant, it is
 
 @export var story_beat : String
+@export var color : Color = Color(0.4235, 0.4235, 0.4235, 1)
 
 @export var intout : String
 @export var place : String
@@ -42,8 +43,9 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and selected:
 			Global.is_draggin = false
-			if designated_dedropzone != Global.reff_main:#if designated_dedropzone_set and designated_dedropzone != Global.reff_main:
+			if designated_dedropzone_set and designated_dedropzone != Global.reff_main and designated_dedropzone != null:
 				var tween = get_tree().create_tween()
+				print(designated_dedropzone)
 				tween.tween_property(self,"global_position",designated_dedropzone.global_position,0.2).set_ease(Tween.EASE_OUT) #clamps the card to the drop zone TO DO if i get the anchors to work this is gonna be redundant
 				
 				$place_vfx.play()
@@ -55,9 +57,6 @@ func _input(event):
 		selected = false
 		Global.selected_card = null
 
-
-func _on_color_color_changed(color):
-	$card_background.modulate = color #(1, 1, 1, 1)
 
 #func _on_static_body_mouse_entered():
 #	if not Global.is_draggin:
@@ -81,7 +80,7 @@ func _on_area_body_entered(body):
 	#if designated_dedropzone != null and contact != null:
 	
 	
-	#designated_dedropzone_set = true
+	designated_dedropzone_set = true
 	
 	
 	#else:
@@ -96,7 +95,7 @@ func _on_area_body_entered(body):
 	#get_target_poss(contact.global_position)
 
 func _on_area_body_exited(body):
-	var contact = body.get_parent().disengage()
+	var _contact = body.get_parent().disengage()
 	#print("contact  ", contact ," and  designated_dedropzone ",designated_dedropzone)
 	#if contact == null:
 	#	designated_dedropzone_set = false
@@ -115,6 +114,3 @@ func _on_area_body_exited(body):
 func fetch_card_content():
 	$card_content.card_content(designated_dedropzone)
 
-
-func _on_party_two_text_changed(new_text):
-	pass # Replace with function body.

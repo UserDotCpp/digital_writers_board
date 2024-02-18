@@ -8,14 +8,20 @@ var current = true
 
 var drag_cursor_shape = false
 
+@onready var staple_vfx = $staple_vfx
+
 @onready var camera = $Camera
+
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.final_script_content = ""
 	Global.reff_main = self
-	camera.zoom = Vector2(0.4, 0.4)
+	#camera.zoom = Vector2(0.4, 0.4)
+	change_below_ui_status(true)
+	change_top_ui_status(true)
 
 
 func _process(_delta):
@@ -45,7 +51,7 @@ func _input(event):
 					if camera.zoom.x < max_unzoom:
 						camera.zoom = Vector2.ONE * max_unzoom
 
-func contact(reff_selected_card):
+func contact(_reff_selected_card):
 	return null
 
 func disengage():
@@ -61,6 +67,8 @@ func create_file():
 
 func _on_print_script_pressed():
 	var cards = get_tree().get_nodes_in_group("card")
+	staple_vfx.pitch_scale = rng.randf_range(0.95, 1.15)
+	staple_vfx.play()
 	for card in cards:
 		if card.designated_dedropzone_set:
 			card.fetch_card_content()
@@ -88,6 +96,8 @@ func _on_spawner_button_pressed():
 
 
 func _on_save_pressed():
+	staple_vfx.pitch_scale = rng.randf_range(0.95, 1.15)
+	staple_vfx.play()
 	var node_to_save = self
 	var scene = PackedScene.new()
 
@@ -95,3 +105,32 @@ func _on_save_pressed():
 
 	var save_path = "res://save_files/" + $save/save_path.text
 	ResourceSaver.save(scene, save_path)
+
+
+func _on_area_top_mouse_entered():
+	change_top_ui_status(false)
+
+
+func _on_area_top_mouse_exited():
+	change_top_ui_status(true)
+
+
+func change_top_ui_status(status) -> void:
+	$Camera/ui/top/hider.visible = !status
+	$Camera/ui/top/LeftRight/print_script.disabled = status
+	$Camera/ui/top/LeftRight/save.disabled = status
+
+func _on_area_below_mouse_entered():
+	change_below_ui_status(false)
+
+func _on_area_below_mouse_exited():
+	change_below_ui_status(true)
+
+func change_below_ui_status(status) -> void:
+	$Camera/ui/below/hider.visible = !status
+	$Camera/ui/below/LeftRight/spawner_button.disabled = status
+	$Camera/ui/below/LeftRight/back.disabled = status
+
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

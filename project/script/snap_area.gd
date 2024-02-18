@@ -60,5 +60,5 @@ func de_occupy():
 	occupied = false
 	occupied_card = false
 
-func _on_drop_point_child_exiting_tree(node):
+func _on_drop_point_child_exiting_tree(_node):
 	de_occupy()

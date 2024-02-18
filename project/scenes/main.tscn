@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5leug1lnt7wn"]
+[gd_scene load_steps=10 format=3 uid="uid://b5leug1lnt7wn"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_a60uh"]
 [ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_gryw4"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bjl14d3wyd110" path="res://scenes/snap_area.tscn" id="3_i005t"]
 [ext_resource type="AudioStream" uid="uid://dwl2i4k8xwcbt" path="res://assets/audio/castle.mp3" id="6_1n8b0"]
 [ext_resource type="AudioStream" uid="uid://dt1eag7bkcliy" path="res://assets/audio/illegal.mp3" id="7_fu5sl"]
+[ext_resource type="AudioStream" uid="uid://b3uoc6se4p33l" path="res://assets/audio/staple.mp3" id="7_hnodb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvny3"]
+size = Vector2(1915, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0wom"]
 size = Vector2(8124, 4505)
@@ -33,12 +37,132 @@ offset_bottom = 1397.0
 color = Color(0, 0, 0, 0.223529)
 
 [node name="Camera" type="Camera2D" parent="."]
+editor_description = "Limits
+
+L -1350
+T -1500
+R 8000
+B 2500"
 position = Vector2(3369, 136)
-limit_left = -1350
-limit_top = -1500
-limit_right = 8000
-limit_bottom = 2500
+zoom = Vector2(0.4, 0.4)
 editor_draw_limits = true
+
+[node name="ui" type="CanvasLayer" parent="Camera"]
+
+[node name="top_back" type="ColorRect" parent="Camera/ui"]
+offset_left = -20.0
+offset_top = -2.0
+offset_right = 1926.0
+offset_bottom = 106.0
+color = Color(0.188235, 0.188235, 0.188235, 0.172549)
+
+[node name="below_back" type="ColorRect" parent="Camera/ui"]
+offset_left = -26.0
+offset_top = 986.0
+offset_right = 1920.0
+offset_bottom = 1094.0
+color = Color(0.188235, 0.188235, 0.188235, 0.172549)
+
+[node name="top" type="VBoxContainer" parent="Camera/ui"]
+offset_left = 2.0
+offset_top = -70.0
+offset_right = 1247.0
+offset_bottom = 149.0
+
+[node name="hider" type="Panel" parent="Camera/ui/top"]
+visible = false
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="LeftRight" type="BoxContainer" parent="Camera/ui/top"]
+layout_mode = 2
+
+[node name="space1" type="Panel" parent="Camera/ui/top/LeftRight"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="print_script" type="Button" parent="Camera/ui/top/LeftRight"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "print script"
+
+[node name="space2" type="Panel" parent="Camera/ui/top/LeftRight"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1090, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="save" type="Button" parent="Camera/ui/top/LeftRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "SAVE"
+
+[node name="save_path" type="TextEdit" parent="Camera/ui/top/LeftRight/save"]
+layout_mode = 0
+offset_left = -301.0
+offset_top = 8.0
+offset_right = 1175.0
+offset_bottom = 208.0
+scale = Vector2(0.200001, 0.32)
+theme_override_font_sizes/font_size = 100
+text = "MyScene.tscn"
+
+[node name="below" type="VBoxContainer" parent="Camera/ui"]
+offset_left = 3.0
+offset_top = 932.0
+offset_right = 1922.0
+offset_bottom = 1151.0
+alignment = 2
+
+[node name="LeftRight" type="HBoxContainer" parent="Camera/ui/below"]
+layout_mode = 2
+
+[node name="space1" type="Panel" parent="Camera/ui/below/LeftRight"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="back" type="Button" parent="Camera/ui/below/LeftRight"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "MENU"
+
+[node name="space2" type="Panel" parent="Camera/ui/below/LeftRight"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1010, 0)
+layout_mode = 2
+
+[node name="spawner_button" type="Button" parent="Camera/ui/below/LeftRight"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+disabled = true
+text = "create card"
+
+[node name="hider" type="Panel" parent="Camera/ui/below"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Area_top" type="Area2D" parent="Camera/ui"]
+position = Vector2(639, 53)
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/ui/Area_top"]
+position = Vector2(320.5, -9.5)
+shape = SubResource("RectangleShape2D_kvny3")
+
+[node name="Area_below" type="Area2D" parent="Camera/ui"]
+position = Vector2(642, 1042)
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/ui/Area_below"]
+position = Vector2(320.5, -9.5)
+shape = SubResource("RectangleShape2D_kvny3")
 
 [node name="out_of_bounds" type="StaticBody2D" parent="."]
 position = Vector2(3857, 453)
@@ -312,6 +436,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="save" type="Button" parent="."]
+visible = false
 offset_left = 3339.0
 offset_top = -764.0
 offset_right = 3826.0
@@ -329,6 +454,7 @@ theme_override_font_sizes/font_size = 100
 text = "MyScene.tscn"
 
 [node name="print_script" type="Button" parent="."]
+visible = false
 offset_left = 2574.0
 offset_top = -759.0
 offset_right = 3201.0
@@ -364,24 +490,28 @@ offset_bottom = 553.0
 texture = ExtResource("2_gryw4")
 expand_mode = 1
 
-[node name="spawner_button" type="Button" parent="spawner"]
-offset_left = 233.0
-offset_top = 40.0
-offset_right = 786.0
-offset_bottom = 185.0
-theme_override_font_sizes/font_size = 100
-text = "create card"
-
 [node name="spawn_location" type="Marker2D" parent="spawner"]
 position = Vector2(196, 391)
 
+[node name="staple_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hnodb")
+volume_db = -15.297
+bus = &"vfx"
+
+[connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
+[connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Camera/ui/below/LeftRight/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Camera/ui/below/LeftRight/spawner_button" to="." method="_on_spawner_button_pressed"]
+[connection signal="mouse_entered" from="Camera/ui/Area_top" to="." method="_on_area_top_mouse_entered"]
+[connection signal="mouse_exited" from="Camera/ui/Area_top" to="." method="_on_area_top_mouse_exited"]
+[connection signal="mouse_entered" from="Camera/ui/Area_below" to="." method="_on_area_below_mouse_entered"]
+[connection signal="mouse_exited" from="Camera/ui/Area_below" to="." method="_on_area_below_mouse_exited"]
 [connection signal="pressed" from="board/HBoxContainer/act1-hide" to="board" method="_on_act_1_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer2/act2-1-hide" to="board" method="_on_act_21_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer3/act2-2-hide" to="board" method="_on_act_22_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer4/act3-hide" to="board" method="_on_act_3_hide_pressed"]
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="print_script" to="." method="_on_print_script_pressed"]
-[connection signal="pressed" from="spawner/spawner_button" to="." method="_on_spawner_button_pressed"]
 
 [editable path="board/act1/drop_zone1-1"]
 [editable path="board/act1/drop_zone2-1"]

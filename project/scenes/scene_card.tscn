@@ -24,6 +24,7 @@ offset_bottom = 340.0
 color = Color(0, 0, 0, 0.278431)
 
 [node name="card_background" type="ColorRect" parent="."]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
 custom_minimum_size = Vector2(100, 100)
 anchors_preset = 4
 anchor_top = 0.5
@@ -34,7 +35,6 @@ offset_right = 533.0
 offset_bottom = 328.0
 grow_vertical = 2
 size_flags_horizontal = 4
-color = Color(0.360784, 0.360784, 0.360784, 1)
 
 [node name="StaticBody2" type="StaticBody2D" parent="." groups=["dropable"]]
 position = Vector2(278, 184)
@@ -43,6 +43,7 @@ collision_mask = 2
 input_pickable = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="StaticBody2"]
+visible = false
 z_index = 4
 position = Vector2(9, -4)
 shape = SubResource("RectangleShape2D_ox8cp")
@@ -51,6 +52,7 @@ shape = SubResource("RectangleShape2D_ox8cp")
 position = Vector2(276, 184)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+visible = false
 position = Vector2(-221.5, -141.5)
 shape = SubResource("RectangleShape2D_alml7")
 
@@ -78,10 +80,64 @@ script = ExtResource("2_gm5t0")
 layout_mode = 2
 
 [node name="color" type="ColorPickerButton" parent="card_content/top"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+color = Color(1, 1, 1, 1)
 
-[node name="story_beat" type="LineEdit" parent="card_content/top"]
+[node name="story_beat" type="MenuButton" parent="card_content/top"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "STORY BEAT"
+flat = false
+alignment = 0
+item_count = 19
+popup/item_0/text = "Act One"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Opening Image"
+popup/item_1/id = 1
+popup/item_2/text = "Set-up"
+popup/item_2/id = 2
+popup/item_3/text = "Theme Stated"
+popup/item_3/id = 3
+popup/item_4/text = "Catalyst"
+popup/item_4/id = 4
+popup/item_5/text = "Debate"
+popup/item_5/id = 5
+popup/item_6/text = "Break Into Two"
+popup/item_6/id = 6
+popup/item_7/text = "Act Two"
+popup/item_7/id = 0
+popup/item_7/separator = true
+popup/item_8/text = "B Story"
+popup/item_8/id = 7
+popup/item_9/text = "The Promise of the Premise"
+popup/item_9/id = 8
+popup/item_10/text = "Midpoint"
+popup/item_10/id = 9
+popup/item_11/text = "Bad Guys Close In"
+popup/item_11/id = 10
+popup/item_12/text = "All is Lost"
+popup/item_12/id = 11
+popup/item_13/text = "Dark Night of the Soul"
+popup/item_13/id = 12
+popup/item_14/text = "Break Into Three"
+popup/item_14/id = 13
+popup/item_15/text = "Act Three"
+popup/item_15/id = 0
+popup/item_15/separator = true
+popup/item_16/text = "Finale"
+popup/item_16/id = 14
+popup/item_17/text = "Final Image"
+popup/item_17/id = 15
+popup/item_18/text = "THE END"
+popup/item_18/id = 0
+popup/item_18/separator = true
+
+[node name="ff" type="LineEdit" parent="card_content/top"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 placeholder_text = "STORY BEAT NAME"
@@ -90,6 +146,7 @@ expand_to_text_length = true
 flat = true
 
 [node name="Container" type="Container" parent="card_content"]
+visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
@@ -168,8 +225,7 @@ text = "."
 [connection signal="input_event" from="StaticBody2" to="." method="_on_static_body_input_event"]
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
-[connection signal="color_changed" from="card_content/top/color" to="." method="_on_color_color_changed"]
-[connection signal="text_changed" from="card_content/top/story_beat" to="card_content" method="_on_story_beat_text_changed"]
+[connection signal="color_changed" from="card_content/top/color" to="card_content" method="_on_color_color_changed"]
 [connection signal="pressed" from="card_content/location_info/intOut" to="card_content" method="_on_int_out_pressed"]
 [connection signal="text_changed" from="card_content/location_info/place" to="card_content" method="_on_place_text_changed"]
 [connection signal="text_changed" from="card_content/location_info/time" to="card_content" method="_on_time_text_changed"]

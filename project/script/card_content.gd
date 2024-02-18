@@ -3,7 +3,15 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$top/story_beat.text = get_parent().story_beat
+	$top/story_beat.get_popup().id_pressed.connect(_on_item_menu_pressed)
+	
+	if get_parent().story_beat == "":
+		$top/story_beat.text = "STORY BEAT"
+	else:
+		$top/story_beat.text = get_parent().story_beat
+
+	get_parent().get_node("card_background").modulate = get_parent().color
+	$top/color.color = get_parent().color
 
 	if get_parent().intout == "":
 		$location_info/intOut.text = "INT"
@@ -91,4 +99,13 @@ func _on_party_two_text_changed(new_text):
 	get_parent().party_two = new_text
 
 
+func _on_item_menu_pressed(id: int):
+	var item_index = ($top/story_beat.get_popup().get_item_index(id))
+	$top/story_beat.text = $top/story_beat.get_popup().get_item_text(item_index)
+	get_parent().story_beat = $top/story_beat.get_popup().get_item_text(item_index)
 
+
+func _on_color_color_changed(color):
+	print(get_parent().get_node("card_background").modulate)
+	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
+	get_parent().color  = color
