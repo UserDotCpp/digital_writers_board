@@ -61,7 +61,12 @@ func disengage():
 @export var script_name = "script_name"
 
 func create_file():
-	var file = FileAccess.open("res://printed_scripts/"+ script_name + ".md", FileAccess.WRITE)
+	#var file = FileAccess.open("res://printed_scripts/"+ script_name + ".md", FileAccess.WRITE)
+	#file.store_string(Global.final_script_content)
+	var dir=DirAccess.open("user://")
+	dir.make_dir("C:/Users/user/Desktop/STC_exports")
+	
+	var file = FileAccess.open("C:/Users/user/Desktop/STC_exports/"+"script_name" + ".md", FileAccess.WRITE)
 	file.store_string(Global.final_script_content)
 
 
