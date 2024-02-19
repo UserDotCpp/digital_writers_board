@@ -121,7 +121,7 @@ offset_right = 1175.0
 offset_bottom = 208.0
 scale = Vector2(0.200001, 0.32)
 theme_override_font_sizes/font_size = 100
-text = "MyScene.tscn"
+placeholder_text = " save file name"
 
 [node name="below" type="VBoxContainer" parent="Camera/ui"]
 offset_left = 3.0
@@ -234,34 +234,34 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="drop_zone1-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone1" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone2-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone2" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone3-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone3" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone4-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone4" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone5-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone5" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone6-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone6" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone7-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone7" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone8-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone8" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone9-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone9" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="drop_zone10-1" parent="board/act1" instance=ExtResource("3_i005t")]
+[node name="drop_zone10" parent="board/act1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="board"]
@@ -294,34 +294,34 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone1" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel2-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone2" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel3-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone3" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel4-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone4" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel5-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone5" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel6-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone6" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel7-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone7" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel8-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone8" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel9-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone9" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel10-21" parent="board/act2-1" instance=ExtResource("3_i005t")]
+[node name="drop_zone10" parent="board/act2-1" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="board"]
@@ -355,34 +355,34 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone1" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel2-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone2" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel3-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone3" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel4-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone4" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel5-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone5" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel6-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone6" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel7-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone7" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel8-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone8" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel9-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone9" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel10-22" parent="board/act2-2" instance=ExtResource("3_i005t")]
+[node name="drop_zone10" parent="board/act2-2" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="board"]
@@ -416,62 +416,35 @@ custom_minimum_size = Vector2(500, 350)
 layout_direction = 2
 layout_mode = 2
 
-[node name="Panel1-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone1" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel2-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone2" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel3-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone3" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel4-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone4" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel5-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone5" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel6-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone6" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel7-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone7" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel8-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone8" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel9-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone9" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
 
-[node name="Panel10-3" parent="board/act3" instance=ExtResource("3_i005t")]
+[node name="drop_zone10" parent="board/act3" instance=ExtResource("3_i005t")]
 layout_mode = 2
-
-[node name="save" type="Button" parent="."]
-visible = false
-offset_left = 3339.0
-offset_top = -764.0
-offset_right = 3826.0
-offset_bottom = -534.0
-theme_override_font_sizes/font_size = 100
-text = "SAVE"
-
-[node name="save_path" type="TextEdit" parent="save"]
-layout_mode = 0
-offset_left = 545.0
-offset_top = 18.0
-offset_right = 2021.0
-offset_bottom = 218.0
-theme_override_font_sizes/font_size = 100
-text = "MyScene.tscn"
-
-[node name="print_script" type="Button" parent="."]
-visible = false
-offset_left = 2574.0
-offset_top = -759.0
-offset_right = 3201.0
-offset_bottom = -548.0
-theme_override_font_sizes/font_size = 100
-text = "print script"
 
 [node name="spawner" type="Node2D" parent="."]
 position = Vector2(-231, -209)
@@ -504,6 +477,8 @@ expand_mode = 1
 [node name="spawn_location" type="Marker2D" parent="spawner"]
 position = Vector2(196, 391)
 
+[node name="drop_point" type="Node2D" parent="."]
+
 [connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Camera/ui/below/LeftRight/back" to="." method="_on_back_pressed"]
@@ -516,46 +491,3 @@ position = Vector2(196, 391)
 [connection signal="pressed" from="board/HBoxContainer2/act2-1-hide" to="board" method="_on_act_21_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer3/act2-2-hide" to="board" method="_on_act_22_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer4/act3-hide" to="board" method="_on_act_3_hide_pressed"]
-[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="print_script" to="." method="_on_print_script_pressed"]
-
-[editable path="board/act1/drop_zone1-1"]
-[editable path="board/act1/drop_zone2-1"]
-[editable path="board/act1/drop_zone3-1"]
-[editable path="board/act1/drop_zone4-1"]
-[editable path="board/act1/drop_zone5-1"]
-[editable path="board/act1/drop_zone6-1"]
-[editable path="board/act1/drop_zone7-1"]
-[editable path="board/act1/drop_zone8-1"]
-[editable path="board/act1/drop_zone9-1"]
-[editable path="board/act1/drop_zone10-1"]
-[editable path="board/act2-1/Panel1-21"]
-[editable path="board/act2-1/Panel2-21"]
-[editable path="board/act2-1/Panel3-21"]
-[editable path="board/act2-1/Panel4-21"]
-[editable path="board/act2-1/Panel5-21"]
-[editable path="board/act2-1/Panel6-21"]
-[editable path="board/act2-1/Panel7-21"]
-[editable path="board/act2-1/Panel8-21"]
-[editable path="board/act2-1/Panel9-21"]
-[editable path="board/act2-1/Panel10-21"]
-[editable path="board/act2-2/Panel1-22"]
-[editable path="board/act2-2/Panel2-22"]
-[editable path="board/act2-2/Panel3-22"]
-[editable path="board/act2-2/Panel4-22"]
-[editable path="board/act2-2/Panel5-22"]
-[editable path="board/act2-2/Panel6-22"]
-[editable path="board/act2-2/Panel7-22"]
-[editable path="board/act2-2/Panel8-22"]
-[editable path="board/act2-2/Panel9-22"]
-[editable path="board/act2-2/Panel10-22"]
-[editable path="board/act3/Panel1-3"]
-[editable path="board/act3/Panel2-3"]
-[editable path="board/act3/Panel3-3"]
-[editable path="board/act3/Panel4-3"]
-[editable path="board/act3/Panel5-3"]
-[editable path="board/act3/Panel6-3"]
-[editable path="board/act3/Panel7-3"]
-[editable path="board/act3/Panel8-3"]
-[editable path="board/act3/Panel9-3"]
-[editable path="board/act3/Panel10-3"]

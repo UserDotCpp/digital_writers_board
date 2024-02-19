@@ -49,12 +49,13 @@ var scene_card
 
 func occupy(reff_selected_card):
 	scene_card = reff_selected_card
-	$drop_point.add_child(scene_card) #if the child dropped in drop zone it'll be still alaing when closing an act
-	#scene_card.scene_file_path=''
-	scene_card.owner = Global.reff_main #makes it local in code, this is dark magic do not touch
+	if $drop_point.get_child_count() == 0:
+		$drop_point.add_child(scene_card) #if the child dropped in drop zone it'll be still alaing when closing an act
 	
-	occupied = true
-	occupied_card = reff_selected_card
+		#scene_card.owner = Global.reff_main #makes it local in code, this is dark magic do not touch #OLD MAGGGICK
+	
+		occupied = true
+		occupied_card = reff_selected_card
 
 func de_occupy():
 	occupied = false
@@ -62,3 +63,10 @@ func de_occupy():
 
 func _on_drop_point_child_exiting_tree(_node):
 	de_occupy()
+
+
+func _on_drop_point_child_entered_tree(node):
+	occupy(node)
+
+func get_drop_point_path():
+	return $drop_point.get_path()

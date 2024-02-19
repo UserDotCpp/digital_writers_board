@@ -22,6 +22,9 @@ func _ready():
 	#camera.zoom = Vector2(0.4, 0.4)
 	change_below_ui_status(true)
 	change_top_ui_status(true)
+	if Global.load_data_on_main_board != "":
+		load_file_data()
+		Global.load_data_on_main_board = ""
 
 
 func _process(_delta):
@@ -65,8 +68,8 @@ func create_file():
 	#file.store_string(Global.final_script_content)
 	var dir=DirAccess.open("user://")
 	dir.make_dir("C:/Users/user/Desktop/STC_exports")
-	
-	var file = FileAccess.open("C:/Users/user/Desktop/STC_exports/"+"script_name" + ".md", FileAccess.WRITE)
+
+	var file = FileAccess.open("C:/Users/user/Desktop/STC_exports/"+"script_name" + ".txt", FileAccess.WRITE)
 	file.store_string(Global.final_script_content)
 
 
@@ -103,14 +106,15 @@ func _on_spawner_button_pressed():
 func _on_save_pressed():
 	staple_vfx.pitch_scale = rng.randf_range(0.95, 1.15)
 	staple_vfx.play()
-	var node_to_save = self
-	var scene = PackedScene.new()
+	#var node_to_save = self
+	#var scene = PackedScene.new()
 
-	scene.pack(node_to_save)
+	#scene.pack(node_to_save)
 
-	var save_path = "res://save_files/" + $Camera/ui/top/LeftRight/save/save_path.text
-	ResourceSaver.save(scene, save_path)
-
+	#var save_path = "res://save_files/" + $Camera/ui/top/LeftRight/save/save_path.text
+	#ResourceSaver.save(scene, save_path)
+	if $Camera/ui/top/LeftRight/save/save_path.text != "":
+		save_file($Camera/ui/top/LeftRight/save/save_path.text)
 
 func _on_area_top_mouse_entered():
 	$move_vfx.play()
@@ -142,3 +146,122 @@ func change_below_ui_status(status) -> void:
 func _on_back_pressed():
 	Global.change_scene_to("res://scenes/main_menu.tscn")
 	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#var file_name = "savegame"
+
+func save_file(file_name) -> void:
+
+	var dir=DirAccess.open("user://")
+	dir.make_dir("C:/Users/user/Desktop/STC_exports")
+
+
+
+	var save_game = FileAccess.open("C:/Users/user/Desktop/STC_exports/" + file_name + ".save", FileAccess.WRITE)
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+
+	for node in save_nodes:
+		# Check the node is an instanced scene so it can be instanced again during load.
+		if node.scene_file_path.is_empty():
+			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			continue
+
+		# Check the node has a save function.
+		if !node.has_method("save"):
+			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			continue
+
+		# Call the node's save function.
+		var node_data = node.call("save")
+
+		# JSON provides a static method to serialized JSON string.
+		var json_string = JSON.stringify(node_data)
+
+		# Store the save dictionary as a new line in the save file.
+		save_game.store_line(json_string)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func load_file_data():
+
+
+	if not FileAccess.file_exists("C:/Users/user/Desktop/STC_exports/" + Global.load_data_on_main_board + ".save"):
+		return # Error! We don't have a save to load.
+
+	# We need to revert the game state so we're not cloning objects
+	# during loading. This will vary wildly depending on the needs of a
+	# project, so take care with this step.
+	# For our example, we will accomplish this by deleting saveable objects.
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in save_nodes:
+		i.queue_free()
+
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var save_game = FileAccess.open("C:/Users/user/Desktop/STC_exports/" + Global.load_data_on_main_board + ".save", FileAccess.READ)
+	while save_game.get_position() < save_game.get_length():
+		var json_string = save_game.get_line()
+
+		# Creates the helper class to interact with JSON
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		# Get the data from the JSON object
+		var node_data = json.get_data()
+
+		# Firstly, we need to create the object and add it to the tree and set its position.
+		var new_object = load(node_data["filename"]).instantiate()
+		get_node(node_data["parent"]).add_child(new_object)
+		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+
+		# Now we set the remaining variables.
+		for i in node_data.keys():
+			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+				continue
+			if i == "color":
+				new_object.set(i, Color.html(node_data[i]))
+				continue
+			new_object.set(i, node_data[i])
+		new_object.fetch_card_content()
+
+
+func get_drop_point_path():
+	return $drop_point.get_path()

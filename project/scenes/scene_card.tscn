@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ygsls4hx3r01"]
+[gd_scene load_steps=7 format=3 uid="uid://ygsls4hx3r01"]
 
 [ext_resource type="Script" path="res://script/scene_card.gd" id="1_6fmlh"]
 [ext_resource type="AudioStream" uid="uid://fp7lpgk3ffj2" path="res://assets/audio/move-self.mp3" id="2_82h74"]
@@ -11,10 +11,7 @@ size = Vector2(488.5, 293)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alml7"]
 size = Vector2(57, 67)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2jcr"]
-size = Vector2(495, 295)
-
-[node name="scene_card" type="Node2D" groups=["card"]]
+[node name="scene_card" type="Node2D" groups=["Persist", "card"]]
 top_level = true
 script = ExtResource("1_6fmlh")
 
@@ -225,13 +222,6 @@ expand_to_text_length = true
 layout_mode = 2
 text = "."
 
-[node name="zoom_area" type="Area2D" parent="."]
-show_behind_parent = true
-
-[node name="collision" type="CollisionShape2D" parent="zoom_area"]
-position = Vector2(287.5, 178.5)
-shape = SubResource("RectangleShape2D_g2jcr")
-
 [connection signal="input_event" from="StaticBody2" to="." method="_on_static_body_input_event"]
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
@@ -244,4 +234,3 @@ shape = SubResource("RectangleShape2D_g2jcr")
 [connection signal="text_changed" from="card_content/emotional_changes/emotional_tone_content" to="card_content" method="_on_emotional_tone_content_text_changed"]
 [connection signal="text_changed" from="card_content/conflict/party_one" to="card_content" method="_on_party_one_text_changed"]
 [connection signal="text_changed" from="card_content/conflict/party_two" to="card_content" method="_on_party_two_text_changed"]
-[connection signal="mouse_entered" from="zoom_area" to="card_content" method="_on_zoom_area_mouse_entered"]

@@ -40,4 +40,5 @@ size_flags_vertical = 3
 
 [node name="drop_point" type="Node2D" parent="."]
 
+[connection signal="child_entered_tree" from="drop_point" to="." method="_on_drop_point_child_entered_tree"]
 [connection signal="child_exiting_tree" from="drop_point" to="." method="_on_drop_point_child_exiting_tree"]

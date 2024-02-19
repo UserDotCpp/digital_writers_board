@@ -5,7 +5,7 @@ var designated_dedropzone = null
 @export var designated_dedropzone_set = false #might be redundant, it is
 
 @export var story_beat : String
-@export var color : Color = Color(0.4235, 0.4235, 0.4235, 1)
+@export var color : Color = Color(0.4235, 0.4235, 0.4235, 1) #Color.html("6c6c6c")
 
 @export var intout : String
 @export var place : String
@@ -112,5 +112,31 @@ func _on_area_body_exited(body):
 #	body_poss_ref = poss
 
 func fetch_card_content():
+	#print(designated_dedropzone.get_path())
+	#$card_content.card_content(designated_dedropzone)
+	$card_content.update_card_content()
 	$card_content.card_content(designated_dedropzone)
 
+
+
+
+func save():
+	print(get_scene_file_path())
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : designated_dedropzone.get_drop_point_path(),#NodePath(str(designated_dedropzone.get_path()) + "/"),
+		"designated_dedropzone" : designated_dedropzone,
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y,
+		"story_beat" : story_beat,
+		"color" : color.to_html(true), # Vector2 is not supported by JSON
+		"intout" : intout,
+		"place" : place,
+		"time" : time,
+		"scene_content" : scene_content,
+		"emotional_tone" : emotional_tone,
+		"emotional_tone_content" : emotional_tone_content,
+		"party_one" : party_one,
+		"party_two" : party_two,
+	}
+	return save_dict

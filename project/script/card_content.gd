@@ -4,7 +4,10 @@ extends VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$top/story_beat.get_popup().id_pressed.connect(_on_item_menu_pressed)
-	
+	update_card_content()
+
+func update_card_content() -> void:
+
 	if get_parent().story_beat == "":
 		$top/story_beat.text = "STORY BEAT"
 	else:
@@ -30,6 +33,8 @@ func _ready():
 	$emotional_changes/emotional_tone_content.text = get_parent().emotional_tone_content
 	$conflict/party_one.text = get_parent().party_one
 	$conflict/party_two.text = get_parent().party_two
+
+
 
 
 
@@ -105,6 +110,3 @@ func _on_color_color_changed(color):
 	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
 	get_parent().color  = color
 
-
-func _on_zoom_area_mouse_entered():
-	print("Se")

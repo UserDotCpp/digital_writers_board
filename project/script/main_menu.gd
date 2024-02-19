@@ -15,13 +15,15 @@ func _on_load_board_pressed():
 
 func _on_load_pressed():
 	$move_vfx.play()
-	var file = $container/working_stuff/loader/path.text
-	
-	if !FileAccess.file_exists(file):
-		$error_vfx.play()
-		return
-	Global.change_scene_to(file)
-	#get_tree().change_scene_to_file(file)
+	if $container/working_stuff/loader/path.text != "":
+		var file = $container/working_stuff/loader/path.text
+		
+		#if !FileAccess.file_exists(file):
+		#	$error_vfx.play()
+		#	return
+		Global.load_data_on_main_board = file
+		Global.change_scene_to("res://scenes/main.tscn")
+		#get_tree().change_scene_to_file(file)
 	
 
 func _on_exit_pressed():

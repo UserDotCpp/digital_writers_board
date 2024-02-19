@@ -100,8 +100,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "res://save_files/MyScene.tscn"
-placeholder_text = "paste the save file path"
+placeholder_text = "paste the save file name"
 
 [node name="space" type="VSeparator" parent="container/working_stuff/loader"]
 modulate = Color(1, 1, 1, 0)
