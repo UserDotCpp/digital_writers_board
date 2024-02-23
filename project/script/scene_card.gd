@@ -2,7 +2,7 @@ extends Node2D
 
 var selected = false
 var designated_dedropzone = null
-@export var designated_dedropzone_set = false #might be redundant, it is
+@export var designated_dedropzone_set = false #might be redundant, it is$not?
 
 @export var story_beat : String
 @export var color : Color = Color(0.4235, 0.4235, 0.4235, 1) #Color.html("6c6c6c")

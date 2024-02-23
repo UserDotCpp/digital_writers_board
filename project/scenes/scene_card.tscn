@@ -154,7 +154,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="intOut" type="Button" parent="card_content/location_info"]
+editor_description = " where does the scene take place"
 layout_mode = 2
+tooltip_text = " where does the scene take place"
 text = "INT"
 
 [node name="space-1" type="Label" parent="card_content/location_info"]
@@ -162,8 +164,12 @@ layout_mode = 2
 text = ". "
 
 [node name="place" type="LineEdit" parent="card_content/location_info"]
+editor_description = "Each card should also include the
+basic action of the scene told in simple declarative sentences"
 layout_mode = 2
-text = "COFFEE SHOP"
+tooltip_text = "Each card should also include the
+basic action of the scene told in simple declarative sentences"
+placeholder_text = "basic action of the scene"
 expand_to_text_length = true
 
 [node name="space-2" type="Label" parent="card_content/location_info"]
@@ -171,26 +177,39 @@ layout_mode = 2
 text = " - "
 
 [node name="time" type="LineEdit" parent="card_content/location_info"]
+editor_description = "time of the scene"
 layout_mode = 2
-text = "DAY"
+tooltip_text = "time of the scene"
+placeholder_text = "time"
 expand_to_text_length = true
 
 [node name="scene_content" type="TextEdit" parent="card_content"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Bob confronts Helen about her "
+tooltip_text = "scene content"
+placeholder_text = "scene content"
 wrap_mode = 1
 
 [node name="emotional_changes" type="HBoxContainer" parent="card_content"]
 layout_mode = 2
 
 [node name="emotional_tone" type="Button" parent="card_content/emotional_changes"]
+editor_description = "represents the emotional change you must execute in
+each scene. And it must also have something
+happen that causes the emotional ~one to change drastically either
+from + to - or from - to + just like the opening and final images
+of a movie"
 layout_mode = 2
+tooltip_text = "represents the emotional change you must execute in
+each scene. And it must also have something
+happen that causes the emotional ~one to change drastically either
+from + to - or from - to + just like the opening and final images
+of a movie"
 text = "+/-"
 
 [node name="emotional_tone_content" type="LineEdit" parent="card_content/emotional_changes"]
 layout_mode = 2
-text = "Bob starts out hopeful, ends up disappointed"
+placeholder_text = "emotion at the beginning of a scene, and at the end"
 expand_to_text_length = true
 
 [node name="dot" type="Label" parent="card_content/emotional_changes"]
@@ -201,12 +220,16 @@ text = "."
 layout_mode = 2
 
 [node name="conflict_direction" type="Button" parent="card_content/conflict"]
+editor_description = "denotes conflict, that conflict must be foremost on
+your mind when you conceive each scene"
 layout_mode = 2
+tooltip_text = "denotes conflict, that conflict must be foremost on
+your mind when you conceive each scene"
 text = "> <"
 
 [node name="party_one" type="LineEdit" parent="card_content/conflict"]
 layout_mode = 2
-text = "Bob wants to know secret"
+placeholder_text = "who is bucking"
 expand_to_text_length = true
 
 [node name="&" type="Label" parent="card_content/conflict"]
@@ -215,7 +238,7 @@ text = " ; "
 
 [node name="party_two" type="LineEdit" parent="card_content/conflict"]
 layout_mode = 2
-text = "Helen cant´t tell him"
+placeholder_text = "against whom"
 expand_to_text_length = true
 
 [node name="dot" type="Label" parent="card_content/conflict"]

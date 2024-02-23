@@ -23,66 +23,77 @@ bus = &"vfx"
 stream = ExtResource("4_3cpnn")
 bus = &"vfx"
 
-[node name="back" type="TextureRect" parent="."]
-modulate = Color(0.870588, 0.870588, 0.870588, 0.937255)
-offset_left = -2399.0
-offset_top = -3252.0
-offset_right = 10605.0
-offset_bottom = 4830.0
-scale = Vector2(0.3, 0.6)
-texture = ExtResource("2_53gn0")
-stretch_mode = 1
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="container" type="VBoxContainer" parent="."]
+[node name="ui" type="CanvasLayer" parent="Camera2D"]
+
+[node name="back" type="TextureRect" parent="Camera2D/ui"]
+modulate = Color(0.870588, 0.870588, 0.870588, 0.937255)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -395.5
+offset_left = -1539.0
+offset_top = -916.0
+offset_right = 8331.0
+offset_bottom = 2161.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.6)
+texture = ExtResource("2_53gn0")
+stretch_mode = 1
+
+[node name="container" type="VBoxContainer" parent="Camera2D/ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -489.5
 offset_top = -363.5
-offset_right = 395.5
+offset_right = 489.5
 offset_bottom = 363.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="main_title" type="Label" parent="container"]
+[node name="main_title" type="Label" parent="Camera2D/ui/container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "digital writers board"
 
-[node name="Label" type="Label" parent="container"]
+[node name="Label" type="Label" parent="Camera2D/ui/container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "base on the \"save the cat\" book"
 
-[node name="working_stuff" type="VBoxContainer" parent="container"]
+[node name="working_stuff" type="VBoxContainer" parent="Camera2D/ui/container"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 
-[node name="space0" type="HSeparator" parent="container/working_stuff"]
+[node name="space0" type="HSeparator" parent="Camera2D/ui/container/working_stuff"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="NEW BOARD" type="Button" parent="container/working_stuff"]
+[node name="NEW BOARD" type="Button" parent="Camera2D/ui/container/working_stuff"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_font_sizes/font_size = 30
 text = "NEW BOARD"
 
-[node name="space1" type="HSeparator" parent="container/working_stuff"]
+[node name="space1" type="HSeparator" parent="Camera2D/ui/container/working_stuff"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="LOAD BOARD" type="Button" parent="container/working_stuff"]
+[node name="LOAD BOARD" type="Button" parent="Camera2D/ui/container/working_stuff"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -90,35 +101,35 @@ theme_override_font_sizes/font_size = 30
 text = "LOAD BOARD
 "
 
-[node name="loader" type="HBoxContainer" parent="container/working_stuff"]
+[node name="loader" type="HBoxContainer" parent="Camera2D/ui/container/working_stuff"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="path" type="LineEdit" parent="container/working_stuff/loader"]
+[node name="path" type="LineEdit" parent="Camera2D/ui/container/working_stuff/loader"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 placeholder_text = "paste the save file name"
 
-[node name="space" type="VSeparator" parent="container/working_stuff/loader"]
+[node name="space" type="VSeparator" parent="Camera2D/ui/container/working_stuff/loader"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="load" type="Button" parent="container/working_stuff/loader"]
+[node name="load" type="Button" parent="Camera2D/ui/container/working_stuff/loader"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "LOAD"
 
-[node name="space2" type="HSeparator" parent="container/working_stuff"]
+[node name="space2" type="HSeparator" parent="Camera2D/ui/container/working_stuff"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="EXIT" type="Button" parent="container/working_stuff"]
+[node name="EXIT" type="Button" parent="Camera2D/ui/container/working_stuff"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -126,19 +137,51 @@ theme_override_font_sizes/font_size = 30
 text = "EXIT
 "
 
-[node name="space3" type="HSeparator" parent="container/working_stuff"]
+[node name="space3" type="HSeparator" parent="Camera2D/ui/container/working_stuff"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="extra" type="VBoxContainer" parent="Camera2D/ui"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -156.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
 
-[connection signal="mouse_entered" from="container/working_stuff/NEW BOARD" to="." method="_on_new_board_mouse_entered"]
-[connection signal="pressed" from="container/working_stuff/NEW BOARD" to="." method="_on_new_board_pressed"]
-[connection signal="mouse_entered" from="container/working_stuff/LOAD BOARD" to="." method="_on_load_board_mouse_entered"]
-[connection signal="pressed" from="container/working_stuff/LOAD BOARD" to="." method="_on_load_board_pressed"]
-[connection signal="mouse_entered" from="container/working_stuff/loader/load" to="." method="_on_load_mouse_entered"]
-[connection signal="pressed" from="container/working_stuff/loader/load" to="." method="_on_load_pressed"]
-[connection signal="mouse_entered" from="container/working_stuff/EXIT" to="." method="_on_exit_mouse_entered"]
-[connection signal="pressed" from="container/working_stuff/EXIT" to="." method="_on_exit_pressed"]
+[node name="version" type="Label" parent="Camera2D/ui/extra"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "version select:"
+
+[node name="ver_opt" type="OptionButton" parent="Camera2D/ui/extra"]
+layout_mode = 2
+disabled = true
+item_count = 3
+popup/item_0/text = "WINDOWS"
+popup/item_0/id = 0
+popup/item_1/text = "WEB"
+popup/item_1/id = 1
+popup/item_2/text = "ANDROID"
+popup/item_2/id = 2
+
+[node name="Panel" type="Panel" parent="Camera2D/ui/extra"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/NEW BOARD" to="." method="_on_new_board_mouse_entered"]
+[connection signal="pressed" from="Camera2D/ui/container/working_stuff/NEW BOARD" to="." method="_on_new_board_pressed"]
+[connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/LOAD BOARD" to="." method="_on_load_board_mouse_entered"]
+[connection signal="pressed" from="Camera2D/ui/container/working_stuff/LOAD BOARD" to="." method="_on_load_board_pressed"]
+[connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/loader/load" to="." method="_on_load_mouse_entered"]
+[connection signal="pressed" from="Camera2D/ui/container/working_stuff/loader/load" to="." method="_on_load_pressed"]
+[connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="item_selected" from="Camera2D/ui/extra/ver_opt" to="." method="_on_ver_opt_item_selected"]

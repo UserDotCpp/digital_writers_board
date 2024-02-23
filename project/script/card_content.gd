@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$top/story_beat.get_popup().id_pressed.connect(_on_item_menu_pressed)
 	update_card_content()
@@ -35,9 +34,6 @@ func update_card_content() -> void:
 	$conflict/party_two.text = get_parent().party_two
 
 
-
-
-
 func card_content(reff_designated_dedropzone) -> void:
 	
 	var location_info
@@ -53,11 +49,20 @@ func card_content(reff_designated_dedropzone) -> void:
 	
 	Global.final_script_content = Global.final_script_content + ("on the "+ str(reff_designated_dedropzone) +"	story beat: "+ get_parent().story_beat + "\n") +(location_info + "\n") +(emotional_changes +"\n"+ conflict + "\n") +("\n" +"	" + scene_content + "\n") +("\n" +"------"+"\n")
 
+
+func _on_color_color_changed(color):
+	print(get_parent().get_node("card_background").modulate)
+	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
+	get_parent().color  = color
+
+
 func _on_story_beat_text_changed(new_text):
 	get_parent().story_beat = new_text
 
+
 func _on_intout_text_changed(new_text):
 	get_parent().intout = new_text
+
 
 func _on_int_out_pressed():
 	if $location_info/intOut.text == "INT" :
@@ -104,9 +109,4 @@ func _on_item_menu_pressed(id: int):
 	$top/story_beat.text = $top/story_beat.get_popup().get_item_text(item_index)
 	get_parent().story_beat = $top/story_beat.get_popup().get_item_text(item_index)
 
-
-func _on_color_color_changed(color):
-	print(get_parent().get_node("card_background").modulate)
-	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
-	get_parent().color  = color
 

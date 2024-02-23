@@ -6,7 +6,7 @@ var idle_spawned_card = null
 var final_script_content : String
 var reff_main
 var load_data_on_main_board = ""
-
+var current_os
 
 func change_scene_to(target: String) -> void:
 	var loading_screen = preload("res://scenes/loading_screen.tscn").instantiate()

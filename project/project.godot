@@ -17,15 +17,17 @@ run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://assets/art/cat.png"
-config/windows_native_icon="res://assets/art/cat.ico"
+config/windows_native_icon="res://assets/art/icon.ico"
 
 [audio]
 
 buses/default_bus_layout="res://resources/default_bus_layout.tres"
+driver/mix_rate=48000
 
 [autoload]
 
 Global="*res://script/global.gd"
+HTML5File="*res://HTML5FileExchange/HTML5FileExchange.gd"
 
 [display]
 
