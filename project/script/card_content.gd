@@ -51,7 +51,7 @@ func card_content(reff_designated_dedropzone) -> void:
 
 
 func _on_color_color_changed(color):
-	print(get_parent().get_node("card_background").modulate)
+	#print(get_parent().get_node("card_background").modulate)
 	get_parent().get_node("card_background").modulate = color #(1, 1, 1, 1)
 	get_parent().color  = color
 

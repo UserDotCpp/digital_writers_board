@@ -12,7 +12,7 @@ script = ExtResource("1_47lo5")
 
 [node name="move_vfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2xr6b")
-volume_db = -16.947
+volume_db = -4.983
 bus = &"vfx"
 
 [node name="place_vfx" type="AudioStreamPlayer" parent="."]
@@ -46,6 +46,7 @@ texture = ExtResource("2_53gn0")
 stretch_mode = 1
 
 [node name="back_setings" type="Panel" parent="Camera2D/ui"]
+visible = false
 offset_left = 1222.0
 offset_top = 744.0
 offset_right = 1906.0
@@ -89,7 +90,7 @@ text = "digital writers board"
 [node name="Label" type="Label" parent="Camera2D/ui/container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "base on the \"save the cat\" book"
+text = "based on the \"save the cat\" book"
 
 [node name="working_stuff" type="VBoxContainer" parent="Camera2D/ui/container"]
 layout_mode = 2
@@ -172,42 +173,75 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -716.0
-offset_top = -236.0
+offset_top = -63.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 0
 
-[node name="title" type="Label" parent="Camera2D/ui/extra"]
+[node name="title" type="Button" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "setings"
+
+[node name="s_container" type="VBoxContainer" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="volume" type="Label" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "setings
-"
+theme_override_font_sizes/font_size = 30
+text = "volume:"
 
-[node name="HSeparator" type="HSeparator" parent="Camera2D/ui/extra"]
+[node name="volume_slider" type="HSlider" parent="Camera2D/ui/extra/s_container/volume"]
 layout_mode = 2
+offset_left = -231.0
+offset_top = 34.0
+offset_right = 357.0
+offset_bottom = 62.0
+min_value = -20.0
+max_value = 2.0
+step = 0.01
+allow_lesser = true
+tick_count = 4
+ticks_on_borders = true
 
-[node name="recoveryfile_t" type="Label" parent="Camera2D/ui/extra"]
+[node name="volume_value" type="Label" parent="Camera2D/ui/extra/s_container/volume"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = -2.0
+offset_right = 191.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 30
+text = "2.25"
+
+[node name="volume_separator" type="HSeparator" parent="Camera2D/ui/extra/s_container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="recoveryfile_t" type="Label" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "\"recoveryfile\" when closing abruptly"
 
-[node name="recoveryfile" type="CheckButton" parent="Camera2D/ui/extra"]
+[node name="recoveryfile" type="CheckButton" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 icon_alignment = 1
 expand_icon = true
 
-[node name="soffrecovery_t" type="Label" parent="Camera2D/ui/extra"]
+[node name="soffrecovery_t" type="Label" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "\"soffrecovery\" when going back to main menu
 "
 
-[node name="soffrecovery" type="CheckButton" parent="Camera2D/ui/extra"]
+[node name="soffrecovery" type="CheckButton" parent="Camera2D/ui/extra/s_container"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -216,13 +250,13 @@ theme_override_font_sizes/font_size = 30
 icon_alignment = 1
 expand_icon = true
 
-[node name="version" type="Label" parent="Camera2D/ui/extra"]
+[node name="version" type="Label" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "version select:"
 
-[node name="ver_opt" type="OptionButton" parent="Camera2D/ui/extra"]
+[node name="ver_opt" type="OptionButton" parent="Camera2D/ui/extra/s_container"]
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
@@ -235,10 +269,20 @@ popup/item_1/id = 1
 popup/item_2/text = "ANDROID"
 popup/item_2/id = 2
 
-[node name="space" type="Panel" parent="Camera2D/ui/extra"]
+[node name="space" type="Panel" parent="Camera2D/ui/extra/s_container"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+
+[node name="build_version" type="Label" parent="Camera2D/ui"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "build version: Pre-alpha 1.0.2"
 
 [connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/NEW BOARD" to="." method="_on_new_board_mouse_entered"]
 [connection signal="pressed" from="Camera2D/ui/container/working_stuff/NEW BOARD" to="." method="_on_new_board_pressed"]
@@ -248,6 +292,10 @@ layout_mode = 2
 [connection signal="pressed" from="Camera2D/ui/container/working_stuff/loader/load" to="." method="_on_load_pressed"]
 [connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_mouse_entered"]
 [connection signal="pressed" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_pressed"]
-[connection signal="toggled" from="Camera2D/ui/extra/recoveryfile" to="." method="_on_recoveryfile_toggled"]
-[connection signal="toggled" from="Camera2D/ui/extra/soffrecovery" to="." method="_on_soffrecovery_toggled"]
-[connection signal="item_selected" from="Camera2D/ui/extra/ver_opt" to="." method="_on_ver_opt_item_selected"]
+[connection signal="mouse_entered" from="Camera2D/ui/extra/title" to="." method="_on_title_mouse_entered"]
+[connection signal="pressed" from="Camera2D/ui/extra/title" to="." method="_on_title_pressed"]
+[connection signal="drag_ended" from="Camera2D/ui/extra/s_container/volume/volume_slider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="Camera2D/ui/extra/s_container/volume/volume_slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="Camera2D/ui/extra/s_container/recoveryfile" to="." method="_on_recoveryfile_toggled"]
+[connection signal="toggled" from="Camera2D/ui/extra/s_container/soffrecovery" to="." method="_on_soffrecovery_toggled"]
+[connection signal="item_selected" from="Camera2D/ui/extra/s_container/ver_opt" to="." method="_on_ver_opt_item_selected"]

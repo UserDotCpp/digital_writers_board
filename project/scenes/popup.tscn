@@ -90,6 +90,8 @@ _data = {
 
 [node name="popup" type="Panel"]
 visible = false
+self_modulate = Color(0, 0, 0, 1)
+z_index = 2
 custom_minimum_size = Vector2(0, 200)
 offset_right = 40.0
 offset_bottom = 40.0

@@ -19,6 +19,8 @@ var rng = RandomNumberGenerator.new()
 @onready var popup = $Camera/ui/screen_real_estate/popup
 
 func _ready():
+	get_tree().set_auto_accept_quit(true)
+
 	Global.final_script_content = ""
 	Global.reff_main = self
 	$board/title.text = ""
@@ -27,6 +29,10 @@ func _ready():
 	#camera.zoom = Vector2(0.4, 0.4)
 	change_below_ui_status(true)
 	change_top_ui_status(true)
+	
+	#temporay
+	$web_test.visible = Global.current_os == "web"
+
 	if Global.load_data_on_main_board != "":
 		if Global.current_os == "web":
 			load_file_data_html()
@@ -151,6 +157,8 @@ func change_below_ui_status(status) -> void:
 
 
 func _on_back_pressed():
+	if Global.soffrecovery:
+		save_file_windows("soffrecovery")
 	Global.change_scene_to("res://scenes/main_menu.tscn")
 	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
@@ -408,7 +416,7 @@ func _on_upload_button_pressed():
 		return
 	HTML5File.load_file()
 	var content = await HTML5File.load_completed
-	$the_exit.text = content
+	$web_test/the_exit.text = content
 	load_file_data_html()
 
 
@@ -423,6 +431,9 @@ func disengage():
 	return self
 
 
-func _on_tree_exited():
-	if Global.soffrecovery:
-		save_file_windows("soffrecovery")
+
+#if the app closes
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and Global.recoveryfile:
+		save_file_windows("recoveryfile")
+

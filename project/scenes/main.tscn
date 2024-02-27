@@ -496,22 +496,23 @@ position = Vector2(196, 391)
 
 [node name="drop_point" type="Node2D" parent="."]
 
-[node name="UploadButton" type="Button" parent="."]
+[node name="web_test" type="Node2D" parent="."]
+
+[node name="UploadButton" type="Button" parent="web_test"]
 offset_left = 1398.0
 offset_top = -1082.0
-offset_right = 3083.0
+offset_right = 3144.0
 offset_bottom = -771.0
 theme_override_font_sizes/font_size = 200
 text = "LOAD FILE IN WEB"
 
-[node name="the_exit" type="RichTextLabel" parent="."]
+[node name="the_exit" type="RichTextLabel" parent="web_test"]
 offset_left = 3647.0
 offset_top = -2153.0
 offset_right = 6006.0
 offset_bottom = -538.0
 theme_override_font_sizes/normal_font_size = 100
 
-[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Camera/ui/below/LeftRight/back" to="." method="_on_back_pressed"]
@@ -524,4 +525,4 @@ theme_override_font_sizes/normal_font_size = 100
 [connection signal="pressed" from="board/HBoxContainer2/act2-1-hide" to="board" method="_on_act_21_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer3/act2-2-hide" to="board" method="_on_act_22_hide_pressed"]
 [connection signal="pressed" from="board/HBoxContainer4/act3-hide" to="board" method="_on_act_3_hide_pressed"]
-[connection signal="pressed" from="UploadButton" to="." method="_on_upload_button_pressed"]
+[connection signal="pressed" from="web_test/UploadButton" to="." method="_on_upload_button_pressed"]

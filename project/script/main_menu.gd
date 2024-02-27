@@ -1,9 +1,11 @@
 extends Node2D
 
 func _ready():
-	$Camera2D/ui/extra/ver_opt.selected = get_os()
-	$Camera2D/ui/extra/recoveryfile.button_pressed = Global.recoveryfile
-	$Camera2D/ui/extra/soffrecovery.button_pressed = Global.soffrecovery
+	$Camera2D/ui/extra/s_container.visible = false
+	$Camera2D/ui/extra/s_container/volume/volume_slider.value = AudioServer.get_bus_volume_db(Global.vfx_bus)
+	$Camera2D/ui/extra/s_container/ver_opt.selected = get_os()
+	$Camera2D/ui/extra/s_container/recoveryfile.button_pressed = Global.recoveryfile
+	$Camera2D/ui/extra/s_container/soffrecovery.button_pressed = Global.soffrecovery
 
 func get_os()-> int:
 	var aux = -1
@@ -63,12 +65,24 @@ func _on_recoveryfile_toggled(toggled_on):
 	Global.recoveryfile = toggled_on
 
 
+func _on_volume_slider_drag_ended(value_changed):
+	$move_vfx.play()
+	AudioServer.set_bus_volume_db(Global.vfx_bus, $Camera2D/ui/extra/s_container/volume/volume_slider.value)
+	if $Camera2D/ui/extra/s_container/volume/volume_slider.value == -20:
+		AudioServer.set_bus_volume_db(Global.vfx_bus, -80)
+
+
 func _on_exit_pressed():
 	$move_vfx.play()
 	get_tree().quit()
 
 func _on_ver_opt_item_selected(index):
-	$Camera2D/ui/extra/ver_opt.selected = index
+	$move_vfx.play()
+	$Camera2D/ui/extra/s_container/ver_opt.selected = index
+
+func _on_title_pressed():
+	$move_vfx.play()
+	$Camera2D/ui/extra/s_container.visible = !$Camera2D/ui/extra/s_container.visible
 
 #UI_________________________________________________________________________________________________
 
@@ -83,5 +97,13 @@ func _on_exit_mouse_entered():
 
 func _on_load_mouse_entered():
 	$place_vfx.play()
+	
+func _on_title_mouse_entered():
+	$place_vfx.play()
+
+func _on_volume_slider_value_changed(value):
+	$Camera2D/ui/extra/s_container/volume/volume_value.text = str(value)
+
+
 
 
