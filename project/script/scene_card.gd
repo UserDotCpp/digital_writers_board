@@ -22,7 +22,7 @@ var designated_dedropzone = null
 
 func _ready():
 	designated_dedropzone = Global.reff_main
-
+	designated_dedropzone_drop_point_path = designated_dedropzone.get_drop_point_path()
 
 func _on_static_body_input_event(_viewport, _event, _shape_idx):	
 	if Input.is_action_just_pressed("left_click") and selected == false:
@@ -45,7 +45,7 @@ func _input(event):
 			Global.is_draggin = false
 			if designated_dedropzone_set and designated_dedropzone != Global.reff_main and designated_dedropzone != null:
 				var tween = get_tree().create_tween()
-				print(designated_dedropzone)
+				#print(designated_dedropzone)
 				tween.tween_property(self,"global_position",designated_dedropzone.global_position,0.2).set_ease(Tween.EASE_OUT) #clamps the card to the drop zone TO DO if i get the anchors to work this is gonna be redundant
 				
 				$place_vfx.play()
@@ -88,7 +88,7 @@ func _on_area_body_entered(body):
 	
 	if contact != Global.reff_main:
 		designated_dedropzone = contact
-	
+		designated_dedropzone_drop_point_path = designated_dedropzone.get_drop_point_path()
 	
 	#print("designated ",contact,"  designated_dedropzone    ",designated_dedropzone)
 		
@@ -118,13 +118,15 @@ func fetch_card_content():
 	$card_content.card_content(designated_dedropzone)
 
 
-
+var designated_dedropzone_drop_point_path
 
 func save():
-	print(get_scene_file_path())
+	#print(get_scene_file_path())
+	 
+	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
-		"parent" : designated_dedropzone.get_drop_point_path(),#NodePath(str(designated_dedropzone.get_path()) + "/"),
+		"parent" : designated_dedropzone_drop_point_path,#designated_dedropzone.get_drop_point_path(),#NodePath(str(designated_dedropzone.get_path()) + "/"),
 		"designated_dedropzone" : designated_dedropzone,
 		"pos_x" : position.x, # Vector2 is not supported by JSON
 		"pos_y" : position.y,

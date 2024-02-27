@@ -2,7 +2,7 @@ extends Node2D
 
 #camerera
 var zoom_percentage = 15
-var max_zoom = 1
+var max_zoom = 2
 var max_unzoom = 0.3
 @onready var camera = $Camera
 
@@ -16,18 +16,23 @@ var rng = RandomNumberGenerator.new()
 
 @export var script_name = "script_name" #name of the markdown file
 
-
+@onready var popup = $Camera/ui/screen_real_estate/popup
 
 func _ready():
 	Global.final_script_content = ""
 	Global.reff_main = self
+	$board/title.text = ""
+	$Camera/ui/top/LeftRight/save/save_path.text = ""
+	
 	#camera.zoom = Vector2(0.4, 0.4)
 	change_below_ui_status(true)
 	change_top_ui_status(true)
 	if Global.load_data_on_main_board != "":
-		if Global.current_os != "web":
+		if Global.current_os == "web":
 			load_file_data_html()
 		else:
+			$board/title.text = Global.load_data_on_main_board
+			$Camera/ui/top/LeftRight/save/save_path.text =Global.load_data_on_main_board
 			load_file_data_windows()
 		Global.load_data_on_main_board = ""
 
@@ -81,9 +86,10 @@ var car_index = 0
 
 func _on_spawner_button_pressed():
 	if Global.idle_spawned_card != null:
-		$spawner/error_vfx.play()
+		#$error_vfx.play()
+		popup.create_poppup("card blocking the way")
 		return
-	$spawner/spawn_vfx.play()
+	$spawn_vfx.play()
 	var card_instance = scene_card.instantiate()
 	#card_instance.scene_file_path=''
 	#card_instance.owner=self#get_tree().get_edited_scene_root()
@@ -95,8 +101,7 @@ func _on_spawner_button_pressed():
 
 
 func _on_save_pressed():
-	staple_vfx.pitch_scale = rng.randf_range(0.95, 1.15)
-	staple_vfx.play()
+	
 	#var node_to_save = self
 	#var scene = PackedScene.new()
 	#scene.pack(node_to_save)
@@ -108,7 +113,12 @@ func _on_save_pressed():
 				save_file_windows($Camera/ui/top/LeftRight/save/save_path.text)
 			"web":
 				save_file_html($Camera/ui/top/LeftRight/save/save_path.text)
-
+	else:
+		#$error_vfx.play()
+		popup.create_poppup("enter a valid name")
+		return
+	staple_vfx.pitch_scale = rng.randf_range(0.95, 1.15)
+	staple_vfx.play()
 #UI_________________________________________________________________________________________________
 func _on_area_top_mouse_entered():
 	$move_vfx.play()
@@ -209,6 +219,15 @@ func save_file_windows(file_name) -> void:
 		save_game.store_line(json_string)
 
 
+
+
+
+
+
+
+
+
+
 func load_file_data_windows():
 
 
@@ -226,6 +245,8 @@ func load_file_data_windows():
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
 	var save_game = FileAccess.open("C:/Users/user/Desktop/STC_exports/" + Global.load_data_on_main_board + ".save", FileAccess.READ)
+	
+	
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()
 
@@ -257,6 +278,11 @@ func load_file_data_windows():
 		new_object.fetch_card_content()
 
 
+
+
+
+
+
 func save_file_html(file_name) -> void:	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 
@@ -286,13 +312,6 @@ func save_file_html(file_name) -> void:
 
 
 
-
-
-
-
-
-
-
 func load_file_data_html():
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
@@ -307,9 +326,28 @@ func load_file_data_html():
 	var content = await HTML5File.load_completed
 	#var json_content = JSON.parse(content,true)
 	#json_content = content
+
+
+
+
+
+
+
+	print(content)
+
+
+
 	var file = FileAccess.open("res://save.save", FileAccess.WRITE)
-	file.parse(content,true)
+	
+	
+	
+	var js_file = JSON.new()
+	
+	js_file.parse(content,true)
 	#file.store_string(content)
+	
+	print(" JS  ",js_file)
+	
 	
 	file.close()
 	#var save_game = JSON.parse_string(content)
@@ -317,7 +355,16 @@ func load_file_data_html():
 	file.open("res://save.save", FileAccess.READ)
 	
 	
-	print(file)
+	print("print file :     " ,file)
+
+
+
+
+
+
+
+
+
 	while file.get_position() < file.get_length():
 		var json_string = file.get_line()
 
@@ -326,6 +373,7 @@ func load_file_data_html():
 
 		# Check if there is any error while parsing the JSON string, skip in case of failure
 		var parse_result = json.parse(json_string)
+		
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
@@ -361,7 +409,7 @@ func _on_upload_button_pressed():
 	HTML5File.load_file()
 	var content = await HTML5File.load_completed
 	$the_exit.text = content
-	#load_file_data_html()
+	load_file_data_html()
 
 
 
@@ -373,3 +421,8 @@ func contact(_reff_selected_card):
 	return null
 func disengage():
 	return self
+
+
+func _on_tree_exited():
+	if Global.soffrecovery:
+		save_file_windows("soffrecovery")

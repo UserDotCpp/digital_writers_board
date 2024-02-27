@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5leug1lnt7wn"]
+[gd_scene load_steps=12 format=3 uid="uid://b5leug1lnt7wn"]
 
 [ext_resource type="Script" path="res://script/main.gd" id="1_a60uh"]
 [ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_gryw4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjl14d3wyd110" path="res://scenes/snap_area.tscn" id="3_i005t"]
 [ext_resource type="AudioStream" uid="uid://fp7lpgk3ffj2" path="res://assets/audio/move-self.mp3" id="4_7vmob"]
 [ext_resource type="AudioStream" uid="uid://dwl2i4k8xwcbt" path="res://assets/audio/castle.mp3" id="6_1n8b0"]
+[ext_resource type="PackedScene" uid="uid://du71s8l3222dr" path="res://scenes/popup.tscn" id="7_2cxii"]
 [ext_resource type="AudioStream" uid="uid://dt1eag7bkcliy" path="res://assets/audio/illegal.mp3" id="7_fu5sl"]
 [ext_resource type="AudioStream" uid="uid://b3uoc6se4p33l" path="res://assets/audio/staple.mp3" id="7_hnodb"]
 
@@ -21,10 +22,10 @@ script = ExtResource("1_a60uh")
 [node name="back" type="TextureRect" parent="."]
 modulate = Color(0.870588, 0.870588, 0.870588, 0.937255)
 z_index = -5
-offset_left = -5412.0
-offset_top = -5222.0
-offset_right = 7592.0
-offset_bottom = 2860.0
+offset_left = -7677.0
+offset_top = -5587.0
+offset_right = 9297.0
+offset_bottom = 3344.0
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_gryw4")
 stretch_mode = 1
@@ -42,6 +43,14 @@ stream = ExtResource("7_hnodb")
 volume_db = -15.297
 bus = &"vfx"
 
+[node name="spawn_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1n8b0")
+bus = &"vfx"
+
+[node name="error_vfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fu5sl")
+bus = &"vfx"
+
 [node name="move_vfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7vmob")
 pitch_scale = 0.88
@@ -54,8 +63,12 @@ L -1350
 T -1500
 R 8000
 B 2500"
-position = Vector2(3369, 136)
+position = Vector2(2339, 306)
 zoom = Vector2(0.4, 0.4)
+limit_left = -7500
+limit_top = -5500
+limit_right = 13500
+limit_bottom = 5500
 editor_draw_limits = true
 
 [node name="ui" type="CanvasLayer" parent="Camera"]
@@ -73,6 +86,18 @@ offset_top = 986.0
 offset_right = 1920.0
 offset_bottom = 1094.0
 color = Color(0.188235, 0.188235, 0.188235, 0.172549)
+
+[node name="screen_real_estate" type="VBoxContainer" parent="Camera/ui"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="popup" parent="Camera/ui/screen_real_estate" instance=ExtResource("7_2cxii")]
+layout_mode = 2
 
 [node name="top" type="VBoxContainer" parent="Camera/ui"]
 offset_left = 2.0
@@ -195,7 +220,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_vfl3q")
 
-[node name="Label" type="Label" parent="board"]
+[node name="title" type="Label" parent="board"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "Board Name"
@@ -449,28 +474,20 @@ layout_mode = 2
 [node name="spawner" type="Node2D" parent="."]
 position = Vector2(-231, -209)
 
-[node name="spawn_vfx" type="AudioStreamPlayer" parent="spawner"]
-stream = ExtResource("6_1n8b0")
-bus = &"vfx"
-
-[node name="error_vfx" type="AudioStreamPlayer" parent="spawner"]
-stream = ExtResource("7_fu5sl")
-bus = &"vfx"
-
 [node name="back" type="ColorRect" parent="spawner"]
-visible = false
 z_index = -1
-offset_right = 953.0
+offset_left = 221.0
+offset_top = 184.0
+offset_right = 813.0
 offset_bottom = 598.0
 color = Color(0, 0, 0, 0.368627)
 
 [node name="TextureRect" type="TextureRect" parent="spawner"]
-visible = false
 modulate = Color(0.329412, 0.329412, 0.329412, 1)
-offset_left = 40.0
-offset_top = 45.0
-offset_right = 921.0
-offset_bottom = 553.0
+offset_left = 237.0
+offset_top = 207.0
+offset_right = 795.0
+offset_bottom = 579.0
 texture = ExtResource("2_gryw4")
 expand_mode = 1
 
@@ -489,11 +506,12 @@ text = "LOAD FILE IN WEB"
 
 [node name="the_exit" type="RichTextLabel" parent="."]
 offset_left = 3647.0
-offset_top = -1137.0
-offset_right = 5695.0
-offset_bottom = 624.0
+offset_top = -2153.0
+offset_right = 6006.0
+offset_bottom = -538.0
 theme_override_font_sizes/normal_font_size = 100
 
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/print_script" to="." method="_on_print_script_pressed"]
 [connection signal="pressed" from="Camera/ui/top/LeftRight/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Camera/ui/below/LeftRight/back" to="." method="_on_back_pressed"]

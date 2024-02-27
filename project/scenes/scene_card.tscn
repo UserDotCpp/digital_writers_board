@@ -166,11 +166,11 @@ text = ". "
 [node name="place" type="LineEdit" parent="card_content/location_info"]
 editor_description = "Each card should also include the
 basic action of the scene told in simple declarative sentences"
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tooltip_text = "Each card should also include the
 basic action of the scene told in simple declarative sentences"
 placeholder_text = "basic action of the scene"
-expand_to_text_length = true
 
 [node name="space-2" type="Label" parent="card_content/location_info"]
 layout_mode = 2
@@ -181,7 +181,6 @@ editor_description = "time of the scene"
 layout_mode = 2
 tooltip_text = "time of the scene"
 placeholder_text = "time"
-expand_to_text_length = true
 
 [node name="scene_content" type="TextEdit" parent="card_content"]
 custom_minimum_size = Vector2(0, 100)
@@ -208,9 +207,9 @@ of a movie"
 text = "+/-"
 
 [node name="emotional_tone_content" type="LineEdit" parent="card_content/emotional_changes"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 placeholder_text = "emotion at the beginning of a scene, and at the end"
-expand_to_text_length = true
 
 [node name="dot" type="Label" parent="card_content/emotional_changes"]
 layout_mode = 2
@@ -228,18 +227,18 @@ your mind when you conceive each scene"
 text = "> <"
 
 [node name="party_one" type="LineEdit" parent="card_content/conflict"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "who is bucking"
-expand_to_text_length = true
 
 [node name="&" type="Label" parent="card_content/conflict"]
 layout_mode = 2
 text = " ; "
 
 [node name="party_two" type="LineEdit" parent="card_content/conflict"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 placeholder_text = "against whom"
-expand_to_text_length = true
 
 [node name="dot" type="Label" parent="card_content/conflict"]
 layout_mode = 2

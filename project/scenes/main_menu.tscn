@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8fmrn1o8k05f"]
+[gd_scene load_steps=7 format=3 uid="uid://c8fmrn1o8k05f"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_47lo5"]
 [ext_resource type="Texture2D" uid="uid://cmdi26aqg18uq" path="res://assets/art/board_background.jpg" id="2_53gn0"]
 [ext_resource type="AudioStream" uid="uid://bs0la4sqs52t2" path="res://assets/audio/capture.mp3" id="3_2l0pv"]
 [ext_resource type="AudioStream" uid="uid://fp7lpgk3ffj2" path="res://assets/audio/move-self.mp3" id="4_2xr6b"]
 [ext_resource type="AudioStream" uid="uid://dt1eag7bkcliy" path="res://assets/audio/illegal.mp3" id="4_3cpnn"]
+[ext_resource type="PackedScene" uid="uid://du71s8l3222dr" path="res://scenes/popup.tscn" id="6_wwm3c"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_47lo5")
@@ -43,6 +44,27 @@ grow_vertical = 2
 scale = Vector2(0.3, 0.6)
 texture = ExtResource("2_53gn0")
 stretch_mode = 1
+
+[node name="back_setings" type="Panel" parent="Camera2D/ui"]
+offset_left = 1222.0
+offset_top = 744.0
+offset_right = 1906.0
+offset_bottom = 1098.0
+
+[node name="screen_real_estate" type="VBoxContainer" parent="Camera2D/ui"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="null" type="Container" parent="Camera2D/ui/screen_real_estate"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="popup" parent="Camera2D/ui/screen_real_estate" instance=ExtResource("6_wwm3c")]
+layout_mode = 2
 
 [node name="container" type="VBoxContainer" parent="Camera2D/ui"]
 anchors_preset = 8
@@ -149,20 +171,62 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -430.0
-offset_top = -156.0
+offset_left = -716.0
+offset_top = -236.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 0
 
+[node name="title" type="Label" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "setings
+"
+
+[node name="HSeparator" type="HSeparator" parent="Camera2D/ui/extra"]
+layout_mode = 2
+
+[node name="recoveryfile_t" type="Label" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "\"recoveryfile\" when closing abruptly"
+
+[node name="recoveryfile" type="CheckButton" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+icon_alignment = 1
+expand_icon = true
+
+[node name="soffrecovery_t" type="Label" parent="Camera2D/ui/extra"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "\"soffrecovery\" when going back to main menu
+"
+
+[node name="soffrecovery" type="CheckButton" parent="Camera2D/ui/extra"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+icon_alignment = 1
+expand_icon = true
+
 [node name="version" type="Label" parent="Camera2D/ui/extra"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "version select:"
 
 [node name="ver_opt" type="OptionButton" parent="Camera2D/ui/extra"]
 layout_mode = 2
+size_flags_horizontal = 4
 disabled = true
+alignment = 1
 item_count = 3
 popup/item_0/text = "WINDOWS"
 popup/item_0/id = 0
@@ -171,9 +235,9 @@ popup/item_1/id = 1
 popup/item_2/text = "ANDROID"
 popup/item_2/id = 2
 
-[node name="Panel" type="Panel" parent="Camera2D/ui/extra"]
+[node name="space" type="Panel" parent="Camera2D/ui/extra"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/NEW BOARD" to="." method="_on_new_board_mouse_entered"]
@@ -184,4 +248,6 @@ layout_mode = 2
 [connection signal="pressed" from="Camera2D/ui/container/working_stuff/loader/load" to="." method="_on_load_pressed"]
 [connection signal="mouse_entered" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_mouse_entered"]
 [connection signal="pressed" from="Camera2D/ui/container/working_stuff/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="toggled" from="Camera2D/ui/extra/recoveryfile" to="." method="_on_recoveryfile_toggled"]
+[connection signal="toggled" from="Camera2D/ui/extra/soffrecovery" to="." method="_on_soffrecovery_toggled"]
 [connection signal="item_selected" from="Camera2D/ui/extra/ver_opt" to="." method="_on_ver_opt_item_selected"]
