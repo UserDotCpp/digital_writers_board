@@ -21,7 +21,7 @@ func _define_js()->void:
 		canceled = true;
 		var input = document.createElement('INPUT'); 
 		input.setAttribute("type", "file");
-		input.setAttribute("accept", ".xodr");
+		input.setAttribute("accept", ".save");
 		input.click();
 		input.addEventListener('change', event => {
 			if (event.target.files.length > 0){
